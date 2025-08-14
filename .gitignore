@@ -1,6 +1,46 @@
+# Python
 __pycache__/
 *.py[cod]
-node_modules/
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+*.manifest
+*.spec
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# Django stuff
+*.log
 db.sqlite3
+db.sqlite3-journal
+/media/
 staticfiles/
+static_root/
+core/static/css/main.css  # compiled Tailwind output
+
+# Node / npm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
 .env
+.env.*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
