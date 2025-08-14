@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<nav class="p-4 bg-gray-100">
+  <ul class="flex space-x-4">
+    <li><a href="#about" class="hover:underline">{% trans 'About' %}</a></li>
+    <li><a href="#products" class="hover:underline">{% trans 'Products' %}</a></li>
+    <li><a href="#faq" class="hover:underline">{% trans 'FAQ' %}</a></li>
+    <li><a href="#contact" class="hover:underline">{% trans 'Contact' %}</a></li>
+  </ul>
+</nav>
+
+<section id="hero" class="py-24 text-center">
+  <h1 class="text-4xl font-bold">{% trans 'Welcome to Mico' %}</h1>
+  <p class="mt-4">{% trans 'Your partner for modern solutions.' %}</p>
+</section>
+
+<section id="about" class="py-16 bg-gray-50">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-semibold">{% trans 'Why choose us' %}</h2>
+    <p class="mt-4">{% trans 'Benefits of using our products.' %}</p>
+  </div>
+</section>
+
+<section id="products" class="py-16">
+  <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+    <div>
+      <h3 class="text-xl font-semibold">{% trans 'Product One' %}</h3>
+      <p class="mt-2">{% trans 'Description for product one.' %}</p>
+    </div>
+    <div>
+      <h3 class="text-xl font-semibold">{% trans 'Product Two' %}</h3>
+      <p class="mt-2">{% trans 'Description for product two.' %}</p>
+    </div>
+  </div>
+</section>
+
+<section id="stats" class="py-16 bg-gray-50">
+  <div class="max-w-4xl mx-auto grid grid-cols-2 gap-8 text-center">
+    <div>
+      <p class="text-3xl font-bold">100+</p>
+      <p>{% trans 'Clients' %}</p>
+    </div>
+    <div>
+      <p class="text-3xl font-bold">50+</p>
+      <p>{% trans 'Projects' %}</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="py-16">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-semibold">{% trans 'Frequently Asked Questions' %}</h2>
+    <div class="mt-4 space-y-4">
+      <details>
+        <summary class="font-medium">{% trans 'What is Mico?' %}</summary>
+        <p class="mt-2">{% trans 'Mico is a demo brochure site.' %}</p>
+      </details>
+      <details>
+        <summary class="font-medium">{% trans 'How do I contact support?' %}</summary>
+        <p class="mt-2">{% trans 'Use the contact form below.' %}</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="py-16 bg-gray-50">
+  <div class="max-w-lg mx-auto">
+    <h2 class="text-2xl font-semibold">{% trans 'Contact Us' %}</h2>
+    <form class="mt-4 space-y-4" method="post">
+      {% csrf_token %}
+      <input class="w-full border p-2" type="text" name="name" placeholder="{% trans 'Name' %}" />
+      <input class="w-full border p-2" type="email" name="email" placeholder="{% trans 'Email' %}" />
+      <textarea class="w-full border p-2" name="message" placeholder="{% trans 'Message' %}"></textarea>
+      <button class="px-4 py-2 bg-blue-600 text-white" type="submit">{% trans 'Send' %}</button>
+    </form>
+  </div>
+</section>
+
+<footer class="py-8 text-center">
+  <p>{% trans '© 2025 Mico. All rights reserved.' %}</p>
+  <a href="#legal" class="underline text-sm">{% trans 'Legal' %}</a>
+</footer>
+{% endblock %}
