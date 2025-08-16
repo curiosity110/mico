@@ -76,107 +76,126 @@
       </div>
     </section>
 
-    <section id="products" class="py-16">
-      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-        <div>
-          <h3 class="text-xl font-semibold">{% trans 'Product One' %}</h3>
-          <p class="mt-2">{% trans 'Description for product one.' %}</p>
+    <section id="products" class="py-12">
+      <!-- Featured (first 3) -->
+      <div class="mb-6 flex items-end justify-between">
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight">{% trans '{{Featured Products}}' %}</h2>
+        <a href="#all-products" class="text-sm hover:underline">{% trans '{{View All}}' %}</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for _ in "012"|make_list %}
+          {% include "components/product_card.html" with label="ExampleProduct {{ forloop.counter }}" %}
+        {% endfor %}
+      </div>
+
+      <!-- All products (10) -->
+      <div id="all-products" class="mt-12 mb-6">
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight">{% trans '{{All Products}}' %}</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {% for _ in "0123456789"|make_list %}
+          {% include "components/product_card.html" with label="ExampleProduct {{ forloop.counter }}" %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <section id="stats" class="py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <p class="text-3xl font-extrabold text-blue-600">100+</p>
+          <p class="text-gray-600">{% trans 'Clients' %}</p>
         </div>
-        <div>
-          <h3 class="text-xl font-semibold">{% trans 'Product Two' %}</h3>
-          <p class="mt-2">{% trans 'Description for product two.' %}</p>
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <p class="text-3xl font-extrabold text-blue-600">50+</p>
+          <p class="text-gray-600">{% trans 'Projects' %}</p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <p class="text-3xl font-extrabold text-blue-600">24/7</p>
+          <p class="text-gray-600">{% trans '{{Support}}' %}</p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <p class="text-3xl font-extrabold text-blue-600">99%</p>
+          <p class="text-gray-600">{% trans '{{Satisfaction}}' %}</p>
         </div>
       </div>
     </section>
 
-    <section id="stats" class="py-16 bg-gray-50">
-      <div class="max-w-4xl mx-auto grid grid-cols-2 gap-8 text-center">
-        <div>
-          <p class="text-3xl font-bold">100+</p>
-          <p>{% trans 'Clients' %}</p>
-        </div>
-        <div>
-          <p class="text-3xl font-bold">50+</p>
-          <p>{% trans 'Projects' %}</p>
-        </div>
+    <section id="faq" class="py-12">
+      <h2 class="text-xl sm:text-2xl font-bold tracking-tight mb-4">{% trans 'Frequently Asked Questions' %}</h2>
+      <div class="space-y-3">
+        <details class="rounded-xl border border-gray-200 bg-white p-4 open:shadow-sm">
+          <summary class="font-medium cursor-pointer list-none marker:hidden">
+            {% trans 'What is {{BrandName}}?' %}
+          </summary>
+          <p class="mt-2 text-gray-600">{% trans '{{BrandName}} is a demo brochure site.' %}</p>
+        </details>
+        <details class="rounded-xl border border-gray-200 bg-white p-4 open:shadow-sm">
+          <summary class="font-medium cursor-pointer list-none marker:hidden">
+            {% trans 'How do I contact support?' %}
+          </summary>
+          <p class="mt-2 text-gray-600">{% trans 'Use the contact form below.' %}</p>
+        </details>
       </div>
     </section>
 
-    <section id="faq" class="py-16">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="text-2xl font-semibold">{% trans 'Frequently Asked Questions' %}</h2>
-        <div class="mt-4 space-y-4">
-          <details>
-            <summary class="font-medium">{% trans 'What is Mico?' %}</summary>
-            <p class="mt-2">{% trans 'Mico is a demo brochure site.' %}</p>
-          </details>
-          <details>
-            <summary class="font-medium">{% trans 'How do I contact support?' %}</summary>
-            <p class="mt-2">{% trans 'Use the contact form below.' %}</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="py-16 bg-gray-50">
-      <div class="max-w-lg mx-auto">
-        <h2 class="text-2xl font-semibold">{% trans 'Contact Us' %}</h2>
-        <form class="mt-4 space-y-4" method="post">
+    <section id="contact" class="py-12">
+      <div class="max-w-lg">
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight">{% trans 'Contact Us' %}</h2>
+        <form class="mt-6 space-y-4" method="post">
           {% csrf_token %}
-          <input class="w-full border p-2" type="text" name="name" placeholder="{% trans 'Name' %}" />
-          <input class="w-full border p-2" type="email" name="email" placeholder="{% trans 'Email' %}" />
-          <textarea class="w-full border p-2" name="message" placeholder="{% trans 'Message' %}"></textarea>
-          <button class="px-4 py-2 bg-blue-600 text-white" type="submit">{% trans 'Send' %}</button>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">{% trans 'Name' %}</label>
+            <input class="mt-1 block w-full rounded-xl border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 p-3" type="text" name="name" placeholder="{% trans 'Name' %}">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">{% trans 'Email' %}</label>
+            <input class="mt-1 block w-full rounded-xl border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 p-3" type="email" name="email" placeholder="{% trans 'Email' %}">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">{% trans 'Message' %}</label>
+            <textarea class="mt-1 block w-full rounded-xl border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 p-3" name="message" rows="4" placeholder="{% trans 'Message' %}"></textarea>
+          </div>
+          <button class="inline-flex items-center rounded-xl bg-blue-600 text-white px-5 py-3 text-sm font-semibold hover:bg-blue-700" type="submit">
+            {% trans 'Send' %}
+          </button>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="bg-gray-50 border-t py-10">
-    <!-- Top row: full-width row with 4 equal parts -->
-    <div class="flex w-screen justify-between text-sm text-gray-700">
-
-      <!-- 1. Contact Us -->
-      <div class="flex-1 px-8">
-        <h3 class="font-semibold text-lg mb-3">{% trans "Contact Us" %}</h3>
-        <ul class="space-y-1">
-          <li>123 Example Street</li>
-          <li>+1 (555) 123-4567</li>
+  <footer class="mt-16 border-t border-gray-200 bg-white">
+    <div class="container mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
+      <div>
+        <div class="text-base font-semibold">{% trans '{{BrandName}}' %}</div>
+        <p class="mt-2 text-gray-600">{% trans '{{Short brand tagline placeholder}}' %}</p>
+      </div>
+      <div>
+        <div class="font-semibold">{% trans 'Contact Us' %}</div>
+        <ul class="mt-2 space-y-1 text-gray-700">
+          <li>123 {{ _("Example Street") }}</li>
+          <li>+389 70 000 000</li>
           <li><a href="mailto:info@example.com" class="hover:underline">info@example.com</a></li>
         </ul>
       </div>
-
-      <!-- 2. Useful Links -->
-      <div class="flex-1 px-8">
-        <h3 class="font-semibold text-lg mb-3">{% trans "Useful Links" %}</h3>
-        <ul class="space-y-1">
-          <li><a href="#about" class="hover:underline">{% trans "About Us" %}</a></li>
-          <li><a href="#privacy" class="hover:underline">{% trans "Privacy Policy" %}</a></li>
-          <li><a href="#terms" class="hover:underline">{% trans "Terms & Conditions" %}</a></li>
+      <div>
+        <div class="font-semibold">{% trans 'Useful Links' %}</div>
+        <ul class="mt-2 space-y-1">
+          <li><a href="#about" class="hover:text-blue-600">{% trans 'About Us' %}</a></li>
+          <li><a href="#faq" class="hover:text-blue-600">{% trans 'FAQ' %}</a></li>
+          <li><a href="#contact" class="hover:text-blue-600">{% trans 'Contact' %}</a></li>
         </ul>
       </div>
-
-      <!-- 3. Additional Information -->
-      <div class="flex-1 px-8">
-        <h3 class="font-semibold text-lg mb-3">{% trans "Additional Information" %}</h3>
-        <ul class="space-y-1">
-          <li><a href="#disclaimer" class="hover:underline">{% trans "Disclaimer" %}</a></li>
-          <li><a href="#consumer-law" class="hover:underline">{% trans "Consumer Protection Law" %}</a></li>
-          <li><a href="#complaints" class="hover:underline">{% trans "Complaints" %}</a></li>
+      <div>
+        <div class="font-semibold">{% trans 'Legal' %}</div>
+        <ul class="mt-2 space-y-1">
+          <li><a href="#privacy" class="hover:text-blue-600">{% trans 'Privacy Policy' %}</a></li>
+          <li><a href="#terms" class="hover:text-blue-600">{% trans 'Terms & Conditions' %}</a></li>
+          <li><a href="#complaints" class="hover:text-blue-600">{% trans 'Complaints' %}</a></li>
         </ul>
-      </div>
-
-      <!-- 4. Logo -->
-      <div class="flex-1 flex justify-center items-start px-8">
-        <img src="/static/img/logo-placeholder.png" alt="Company Logo" class="h-16">
       </div>
     </div>
-
-    <!-- Bottom row: copyright -->
-    <div class="mt-8 border-t pt-4 text-center text-gray-500 text-sm w-screen">
-      {% trans "Copyright © 2025" %}
-      <span class="font-semibold text-green-600">Example Company</span>.
-      {% trans "All rights reserved" %}.
+    <div class="border-t border-gray-200 py-4 text-center text-xs text-gray-500">
+      &copy; {{ now|date:"Y" }} {% trans '{{BrandName}}' %} — {% trans 'All rights reserved' %}.
     </div>
   </footer>
 
