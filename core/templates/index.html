@@ -2,130 +2,182 @@
 {% load i18n %}
 
 {% block content %}
-<nav class="p-4 bg-gray-100">
-  <ul class="flex space-x-4">
-    <li><a href="#about" class="hover:underline">{% trans 'About' %}</a></li>
-    <li><a href="#products" class="hover:underline">{% trans 'Products' %}</a></li>
-    <li><a href="#faq" class="hover:underline">{% trans 'FAQ' %}</a></li>
-    <li><a href="#contact" class="hover:underline">{% trans 'Contact' %}</a></li>
-  </ul>
-</nav>
-
-<section id="hero" class="py-24 text-center">
-  <h1 class="text-4xl font-bold">{% trans 'Welcome to Mico' %}</h1>
-  <p class="mt-4">{% trans 'Your partner for modern solutions.' %}</p>
-</section>
-
-<section id="about" class="py-16 bg-gray-50">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-2xl font-semibold">{% trans 'Why choose us' %}</h2>
-    <p class="mt-4">{% trans 'Benefits of using our products.' %}</p>
-  </div>
-</section>
-
-<section id="products" class="py-16">
-  <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-    <div>
-      <h3 class="text-xl font-semibold">{% trans 'Product One' %}</h3>
-      <p class="mt-2">{% trans 'Description for product one.' %}</p>
-    </div>
-    <div>
-      <h3 class="text-xl font-semibold">{% trans 'Product Two' %}</h3>
-      <p class="mt-2">{% trans 'Description for product two.' %}</p>
-    </div>
-  </div>
-</section>
-
-<section id="stats" class="py-16 bg-gray-50">
-  <div class="max-w-4xl mx-auto grid grid-cols-2 gap-8 text-center">
-    <div>
-      <p class="text-3xl font-bold">100+</p>
-      <p>{% trans 'Clients' %}</p>
-    </div>
-    <div>
-      <p class="text-3xl font-bold">50+</p>
-      <p>{% trans 'Projects' %}</p>
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="py-16">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-2xl font-semibold">{% trans 'Frequently Asked Questions' %}</h2>
-    <div class="mt-4 space-y-4">
-      <details>
-        <summary class="font-medium">{% trans 'What is Mico?' %}</summary>
-        <p class="mt-2">{% trans 'Mico is a demo brochure site.' %}</p>
-      </details>
-      <details>
-        <summary class="font-medium">{% trans 'How do I contact support?' %}</summary>
-        <p class="mt-2">{% trans 'Use the contact form below.' %}</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="py-16 bg-gray-50">
-  <div class="max-w-lg mx-auto">
-    <h2 class="text-2xl font-semibold">{% trans 'Contact Us' %}</h2>
-    <form class="mt-4 space-y-4" method="post">
-      {% csrf_token %}
-      <input class="w-full border p-2" type="text" name="name" placeholder="{% trans 'Name' %}" />
-      <input class="w-full border p-2" type="email" name="email" placeholder="{% trans 'Email' %}" />
-      <textarea class="w-full border p-2" name="message" placeholder="{% trans 'Message' %}"></textarea>
-      <button class="px-4 py-2 bg-blue-600 text-white" type="submit">{% trans 'Send' %}</button>
-    </form>
-  </div>
-</section>
-
-
-<footer class="bg-gray-50 border-t py-10">
-  <!-- Top row: full-width row with 4 equal parts -->
-  <div class="flex w-screen justify-between text-sm text-gray-700">
-
-    <!-- 1. Contact Us -->
-    <div class="flex-1 px-8">
-      <h3 class="font-semibold text-lg mb-3">{% trans "Contact Us" %}</h3>
-      <ul class="space-y-1">
-        <li>123 Example Street</li>
-        <li>+1 (555) 123-4567</li>
-        <li><a href="mailto:info@example.com" class="hover:underline">info@example.com</a></li>
+  <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-200">
+    <div class="container mx-auto px-4 h-14 flex items-center">
+      <ul class="hidden md:flex items-center gap-6 text-sm text-gray-700">
+        <li><a href="#about" class="hover:text-blue-600">{% trans 'About' %}</a></li>
+        <li><a href="#products" class="hover:text-blue-600">{% trans 'Products' %}</a></li>
+        <li><a href="#faq" class="hover:text-blue-600">{% trans 'FAQ' %}</a></li>
+        <li><a href="#contact" class="hover:text-blue-600">{% trans 'Contact' %}</a></li>
       </ul>
+      <button class="md:hidden ml-auto inline-flex items-center justify-center rounded-lg p-2 border border-gray-300" id="menuToggle">
+        <span class="sr-only">Menu</span> &#9776;
+      </button>
+    </div>
+    <div class="md:hidden hidden border-t border-gray-200 bg-white" id="mobileMenu">
+      <div class="container mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
+        <a class="py-2" href="#about">{% trans 'About' %}</a>
+        <a class="py-2" href="#products">{% trans 'Products' %}</a>
+        <a class="py-2" href="#faq">{% trans 'FAQ' %}</a>
+        <a class="py-2" href="#contact">{% trans 'Contact' %}</a>
+      </div>
+    </div>
+  </nav>
+  <script>
+    document.addEventListener('click', (e)=>{
+      if(e.target.closest('#menuToggle')){
+        document.getElementById('mobileMenu')?.classList.toggle('hidden');
+      }
+    });
+  </script>
+
+  <main class="container mx-auto px-4">
+    <!-- HERO -->
+    <section id="hero" class="relative overflow-hidden rounded-3xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white mt-6">
+      <div class="px-6 sm:px-10 py-16 sm:py-20">
+        <h1 class="max-w-2xl text-3xl sm:text-5xl font-extrabold tracking-tight">
+          {% trans '{{HeroTitle}}' %}
+        </h1>
+        <p class="mt-4 max-w-2xl text-white/90">{% trans '{{HeroSubtitle}}' %}</p>
+        <div class="mt-8 flex gap-3">
+          <a href="#products" class="inline-flex items-center rounded-xl bg-white text-gray-900 px-5 py-3 text-sm font-semibold hover:bg-gray-100">
+            {% trans '{{Browse Products}}' %}
+          </a>
+          <a href="#contact" class="inline-flex items-center rounded-xl border border-white/30 px-5 py-3 text-sm font-semibold hover:bg-white/10">
+            {% trans '{{Contact Us}}' %}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- USPs -->
+    <section id="about" class="py-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+          <div class="text-2xl">🚚</div>
+          <h3 class="mt-2 font-semibold">{% trans '{{Fast delivery}}' %}</h3>
+          <p class="text-sm text-gray-600 mt-1">{% trans '{{Across all markets}}' %}</p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+          <div class="text-2xl">💳</div>
+          <h3 class="mt-2 font-semibold">{% trans '{{Cash on Delivery}}' %}</h3>
+          <p class="text-sm text-gray-600 mt-1">{% trans '{{Pay at doorstep}}' %}</p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+          <div class="text-2xl">✅</div>
+          <h3 class="mt-2 font-semibold">{% trans '{{Quality guarantee}}' %}</h3>
+          <p class="text-sm text-gray-600 mt-1">{% trans '{{Trusted supplier}}' %}</p>
+        </div>
+        <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+          <div class="text-2xl">📞</div>
+          <h3 class="mt-2 font-semibold">{% trans '{{Support}}' %}</h3>
+          <p class="text-sm text-gray-600 mt-1">{% trans '{{We call to confirm}}' %}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="py-16">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold">{% trans 'Product One' %}</h3>
+          <p class="mt-2">{% trans 'Description for product one.' %}</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold">{% trans 'Product Two' %}</h3>
+          <p class="mt-2">{% trans 'Description for product two.' %}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats" class="py-16 bg-gray-50">
+      <div class="max-w-4xl mx-auto grid grid-cols-2 gap-8 text-center">
+        <div>
+          <p class="text-3xl font-bold">100+</p>
+          <p>{% trans 'Clients' %}</p>
+        </div>
+        <div>
+          <p class="text-3xl font-bold">50+</p>
+          <p>{% trans 'Projects' %}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-16">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl font-semibold">{% trans 'Frequently Asked Questions' %}</h2>
+        <div class="mt-4 space-y-4">
+          <details>
+            <summary class="font-medium">{% trans 'What is Mico?' %}</summary>
+            <p class="mt-2">{% trans 'Mico is a demo brochure site.' %}</p>
+          </details>
+          <details>
+            <summary class="font-medium">{% trans 'How do I contact support?' %}</summary>
+            <p class="mt-2">{% trans 'Use the contact form below.' %}</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-gray-50">
+      <div class="max-w-lg mx-auto">
+        <h2 class="text-2xl font-semibold">{% trans 'Contact Us' %}</h2>
+        <form class="mt-4 space-y-4" method="post">
+          {% csrf_token %}
+          <input class="w-full border p-2" type="text" name="name" placeholder="{% trans 'Name' %}" />
+          <input class="w-full border p-2" type="email" name="email" placeholder="{% trans 'Email' %}" />
+          <textarea class="w-full border p-2" name="message" placeholder="{% trans 'Message' %}"></textarea>
+          <button class="px-4 py-2 bg-blue-600 text-white" type="submit">{% trans 'Send' %}</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-50 border-t py-10">
+    <!-- Top row: full-width row with 4 equal parts -->
+    <div class="flex w-screen justify-between text-sm text-gray-700">
+
+      <!-- 1. Contact Us -->
+      <div class="flex-1 px-8">
+        <h3 class="font-semibold text-lg mb-3">{% trans "Contact Us" %}</h3>
+        <ul class="space-y-1">
+          <li>123 Example Street</li>
+          <li>+1 (555) 123-4567</li>
+          <li><a href="mailto:info@example.com" class="hover:underline">info@example.com</a></li>
+        </ul>
+      </div>
+
+      <!-- 2. Useful Links -->
+      <div class="flex-1 px-8">
+        <h3 class="font-semibold text-lg mb-3">{% trans "Useful Links" %}</h3>
+        <ul class="space-y-1">
+          <li><a href="#about" class="hover:underline">{% trans "About Us" %}</a></li>
+          <li><a href="#privacy" class="hover:underline">{% trans "Privacy Policy" %}</a></li>
+          <li><a href="#terms" class="hover:underline">{% trans "Terms & Conditions" %}</a></li>
+        </ul>
+      </div>
+
+      <!-- 3. Additional Information -->
+      <div class="flex-1 px-8">
+        <h3 class="font-semibold text-lg mb-3">{% trans "Additional Information" %}</h3>
+        <ul class="space-y-1">
+          <li><a href="#disclaimer" class="hover:underline">{% trans "Disclaimer" %}</a></li>
+          <li><a href="#consumer-law" class="hover:underline">{% trans "Consumer Protection Law" %}</a></li>
+          <li><a href="#complaints" class="hover:underline">{% trans "Complaints" %}</a></li>
+        </ul>
+      </div>
+
+      <!-- 4. Logo -->
+      <div class="flex-1 flex justify-center items-start px-8">
+        <img src="/static/img/logo-placeholder.png" alt="Company Logo" class="h-16">
+      </div>
     </div>
 
-    <!-- 2. Useful Links -->
-    <div class="flex-1 px-8">
-      <h3 class="font-semibold text-lg mb-3">{% trans "Useful Links" %}</h3>
-      <ul class="space-y-1">
-        <li><a href="#about" class="hover:underline">{% trans "About Us" %}</a></li>
-        <li><a href="#privacy" class="hover:underline">{% trans "Privacy Policy" %}</a></li>
-        <li><a href="#terms" class="hover:underline">{% trans "Terms & Conditions" %}</a></li>
-      </ul>
+    <!-- Bottom row: copyright -->
+    <div class="mt-8 border-t pt-4 text-center text-gray-500 text-sm w-screen">
+      {% trans "Copyright © 2025" %}
+      <span class="font-semibold text-green-600">Example Company</span>.
+      {% trans "All rights reserved" %}.
     </div>
-
-    <!-- 3. Additional Information -->
-    <div class="flex-1 px-8">
-      <h3 class="font-semibold text-lg mb-3">{% trans "Additional Information" %}</h3>
-      <ul class="space-y-1">
-        <li><a href="#disclaimer" class="hover:underline">{% trans "Disclaimer" %}</a></li>
-        <li><a href="#consumer-law" class="hover:underline">{% trans "Consumer Protection Law" %}</a></li>
-        <li><a href="#complaints" class="hover:underline">{% trans "Complaints" %}</a></li>
-      </ul>
-    </div>
-
-    <!-- 4. Logo -->
-    <div class="flex-1 flex justify-center items-start px-8">
-      <img src="/static/img/logo-placeholder.png" alt="Company Logo" class="h-16">
-    </div>
-  </div>
-
-  <!-- Bottom row: copyright -->
-  <div class="mt-8 border-t pt-4 text-center text-gray-500 text-sm w-screen">
-    {% trans "Copyright © 2025" %}
-    <span class="font-semibold text-green-600">Example Company</span>.
-    {% trans "All rights reserved" %}.
-  </div>
-</footer>
-
+  </footer>
 
 {% endblock %}

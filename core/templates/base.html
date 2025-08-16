@@ -4,10 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Dev: full Tailwind utilities (keeps existing compiled CSS for fallback) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
-  <title>{% block title %}{% trans 'Mico' %}{% endblock %}</title>
+  <title>{% block title %}{% trans '{{BrandName}}' %}{% endblock %}</title>
 </head>
-<body class="antialiased">
+<body class="min-h-screen bg-gray-50 text-gray-800 antialiased">
   {% block content %}{% endblock %}
 </body>
 </html>
