@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tailwindcss -i ./core/static/src/styles.css -o ./core/static/css/main.css --minify",
-     "dev": "tailwindcss -i ./core/static/src/styles.css -o ./core/static/css/main.css --watch"
+    "dev": "tailwindcss -i ./core/static/src/styles.css -o ./core/static/css/main.css --watch",
+    "test": "python manage.py test"
   },
   "keywords": [],
   "author": "",

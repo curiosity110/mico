@@ -1,12 +1,14 @@
 {# product_card partial: expects label, desc, img #}
 {% load i18n %}
+{% trans "ExampleProduct" as default_label %}
+{% trans "Short placeholder description" as default_desc %}
 <a href="#order" class="group block rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden hover:shadow-md hover:border-blue-200 transition">
   <div class="aspect-square overflow-hidden bg-gray-100">
-    <img src="{{ img|default:'/static/img/logo-placeholder.png' }}" alt="" class="h-full w-full object-cover group-hover:scale-105 transition">
+    <img src="{{ img|default:'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg' }}" alt="" class="h-full w-full object-cover group-hover:scale-105 transition">
   </div>
   <div class="p-4">
-    <h3 class="text-base font-semibold line-clamp-2">{{ label|default:_('{{ExampleProduct}}') }}</h3>
-    <p class="mt-1 text-sm text-gray-500">{{ desc|default:_('{{Short placeholder description}}') }}</p>
+    <h3 class="text-base font-semibold line-clamp-2">{{ label|default:default_label }}</h3>
+    <p class="mt-1 text-sm text-gray-500">{{ desc|default:default_desc }}</p>
     <div class="mt-4 flex gap-2">
       <a href="#order" class="inline-flex items-center rounded-xl bg-blue-600 text-white px-4 py-2 text-sm font-semibold hover:bg-blue-700">{% trans '{{Order}}' %}</a>
       <a href="#products" class="inline-flex items-center rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm font-semibold hover:bg-gray-50">{% trans '{{More Info}}' %}</a>
