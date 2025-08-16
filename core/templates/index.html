@@ -78,8 +78,54 @@
   </div>
 </section>
 
-<footer class="py-8 text-center">
-  <p>{% trans '© 2025 Mico. All rights reserved.' %}</p>
-  <a href="#legal" class="underline text-sm">{% trans 'Legal' %}</a>
+
+<footer class="bg-gray-50 border-t py-10">
+  <!-- Top row: full-width row with 4 equal parts -->
+  <div class="flex w-screen justify-between text-sm text-gray-700">
+
+    <!-- 1. Contact Us -->
+    <div class="flex-1 px-8">
+      <h3 class="font-semibold text-lg mb-3">{% trans "Contact Us" %}</h3>
+      <ul class="space-y-1">
+        <li>123 Example Street</li>
+        <li>+1 (555) 123-4567</li>
+        <li><a href="mailto:info@example.com" class="hover:underline">info@example.com</a></li>
+      </ul>
+    </div>
+
+    <!-- 2. Useful Links -->
+    <div class="flex-1 px-8">
+      <h3 class="font-semibold text-lg mb-3">{% trans "Useful Links" %}</h3>
+      <ul class="space-y-1">
+        <li><a href="#about" class="hover:underline">{% trans "About Us" %}</a></li>
+        <li><a href="#privacy" class="hover:underline">{% trans "Privacy Policy" %}</a></li>
+        <li><a href="#terms" class="hover:underline">{% trans "Terms & Conditions" %}</a></li>
+      </ul>
+    </div>
+
+    <!-- 3. Additional Information -->
+    <div class="flex-1 px-8">
+      <h3 class="font-semibold text-lg mb-3">{% trans "Additional Information" %}</h3>
+      <ul class="space-y-1">
+        <li><a href="#disclaimer" class="hover:underline">{% trans "Disclaimer" %}</a></li>
+        <li><a href="#consumer-law" class="hover:underline">{% trans "Consumer Protection Law" %}</a></li>
+        <li><a href="#complaints" class="hover:underline">{% trans "Complaints" %}</a></li>
+      </ul>
+    </div>
+
+    <!-- 4. Logo -->
+    <div class="flex-1 flex justify-center items-start px-8">
+      <img src="/static/img/logo-placeholder.png" alt="Company Logo" class="h-16">
+    </div>
+  </div>
+
+  <!-- Bottom row: copyright -->
+  <div class="mt-8 border-t pt-4 text-center text-gray-500 text-sm w-screen">
+    {% trans "Copyright © 2025" %}
+    <span class="font-semibold text-green-600">Example Company</span>.
+    {% trans "All rights reserved" %}.
+  </div>
 </footer>
+
+
 {% endblock %}
