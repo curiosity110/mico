@@ -2,44 +2,6 @@
 {% load i18n %}
 
 {% block content %}
-  <!-- NAVBAR (languages outside hamburger) -->
-  <nav data-site-nav class="sticky top-0 z-40 border-b border-gray-200 transition">
-    <div class="container mx-auto px-4 h-14 flex items-center justify-between">
-      <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
-        <li><a href="#about" class="hover:text-brand-600">{% trans 'About' %}</a></li>
-        <li><a href="#products" class="hover:text-brand-600">{% trans 'Products' %}</a></li>
-        <li><a href="#certs" class="hover:text-brand-600">{% trans 'Certificates' %}</a></li>
-        <li><a href="#contact" class="hover:text-brand-600">{% trans 'Contact' %}</a></li>
-      </ul>
-
-      <a href="#" class="md:absolute left-1/2 -translate-x-1/2 text-base font-extrabold text-brand-700">
-        {% trans '{{BrandName}}' %}
-      </a>
-
-      <div class="flex items-center gap-3 ml-auto">
-        <!-- hamburger -->
-        <button id="menuToggle" class="md:hidden inline-flex items-center justify-center rounded-xl p-2 bg-white/40 backdrop-blur-sm ring-1 ring-inset ring-gray-200 hover:bg-white/70 transition">
-          <span class="sr-only">Menu</span>
-          <div id="menuIcon" class="w-6 h-4 relative">
-            <span class="line line-1 absolute inset-x-0 top-0 h-0.5 bg-gray-800 rounded"></span>
-            <span class="line line-2 absolute inset-x-0 top-1/2 -translate-y-1/2 h-0.5 bg-gray-800 rounded"></span>
-            <span class="line line-3 absolute inset-x-0 bottom-0 h-0.5 bg-gray-800 rounded"></span>
-          </div>
-        </button>
-      </div>
-    </div>
-
-    <!-- mobile menu -->
-    <div class="md:hidden hidden border-t border-gray-200 bg-white/95 backdrop-blur" id="mobileMenu">
-      <div class="container mx-auto px-4 py-3 flex flex-col gap-1 text-sm">
-        <a class="py-2 hover:text-brand-600" href="#about">{% trans 'About' %}</a>
-        <a class="py-2 hover:text-brand-600" href="#products">{% trans 'Products' %}</a>
-        <a class="py-2 hover:text-brand-600" href="#certs">{% trans 'Certificates' %}</a>
-        <a class="py-2 hover:text-brand-600" href="#contact">{% trans 'Contact' %}</a>
-      </div>
-    </div>
-  </nav>
-
   <!-- TRUST/PAYMENT BAR (pay in person & invoices) -->
   <div class="bg-white/70 backdrop-blur border-b border-gray-200">
     <div class="container mx-auto px-4 py-2 text-xs sm:text-sm text-gray-700 flex flex-wrap gap-3 items-center justify-center">

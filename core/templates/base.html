@@ -32,51 +32,21 @@
 
   <!-- Your CSS tweaks -->
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  <link rel="stylesheet" href="{% static 'core/css/site.css' %}" />
   <title>{% block title %}{% trans '{{BrandName}}' %}{% endblock %}</title>
 </head>
 <body class="min-h-screen bg-gray-50 text-gray-800 antialiased">
+  {% include 'partials/_navbar.html' %}
   <!-- subtle background aura -->
   <div class="pointer-events-none fixed inset-0 bg-[radial-gradient(70rem_40rem_at_50%_-10%,theme(colors.brand.100/40),transparent)]"></div>
 
   {% block content %}{% endblock %}
+  {% include 'partials/_footer.html' %}
 
   <!-- Swiper JS (required) -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  <!-- nav toggles + sticky glow -->
-  <script>
-    document.addEventListener('click', (e) => {
-      const toggle = e.target.closest('#menuToggle');
-      if (toggle) {
-        document.getElementById('mobileMenu')?.classList.toggle('hidden');
-        document.getElementById('menuIcon')?.classList.toggle('is-open');
-      }
-      if (e.target.closest('#mobileMenu a')) {
-        document.getElementById('mobileMenu')?.classList.add('hidden');
-        document.getElementById('menuIcon')?.classList.remove('is-open');
-      }
-    });
-
-    const nav = document.querySelector('nav[data-site-nav]');
-    const handleScroll = () => {
-      if (!nav) return;
-      if (window.scrollY > 8) {
-        nav.classList.add('shadow-soft','bg-white/80','backdrop-blur');
-      } else {
-        nav.classList.remove('shadow-soft','bg-white/80','backdrop-blur');
-      }
-    };
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-  </script>
-
-  // <!-- hamburger animation -->
-  <style>
-    #menuIcon .line { transition: transform .2s ease, opacity .2s ease; transform-origin: center; }
-    #menuIcon.is-open .line-1 { transform: translateY(6px) rotate(45deg); }
-    #menuIcon.is-open .line-2 { opacity: 0; }
-    #menuIcon.is-open .line-3 { transform: translateY(-6px) rotate(-45deg); }
-  </style>
+  <script src="{% static 'core/js/nav.js' %}"></script>
 
   {% block scripts %}{% endblock %}
 </body>

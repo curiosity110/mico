@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 from core.models import BaseInternalModel
 
@@ -6,9 +7,15 @@ from core.models import BaseInternalModel
 # Create your models here.
 class Product(BaseInternalModel):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
     sale_price = models.PositiveIntegerField(default=0)
     stock_price = models.PositiveIntegerField(default=0)
     stock = models.PositiveIntegerField(default=0)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.name} - {self.sale_price}"

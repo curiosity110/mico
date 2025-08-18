@@ -1,0 +1,13 @@
+#nav-search-results { z-index:50; }
+.p-card { @apply border rounded bg-white shadow-sm overflow-hidden flex flex-col; }
+.p-card__image img { @apply object-cover w-full h-full; }
+.p-card__body { @apply p-4 flex flex-col flex-1; }
+.p-card__name { @apply text-base font-semibold text-gray-900; }
+.p-card__prices { @apply mt-2 flex items-center gap-2; }
+.p-card__sale { @apply text-lg font-bold text-gray-900; }
+.p-card__stock { @apply text-sm text-gray-500 line-through; }
+.p-card__badge { @apply mt-2 inline-block rounded-lg px-2 py-1 text-xs font-medium; }
+.p-card__badge--ok { @apply bg-green-100 text-green-800; }
+.p-card__badge--out { @apply bg-gray-100 text-gray-500; }
+.p-card__actions { @apply mt-4; }
+.p-card__link { @apply inline-flex items-center rounded-xl bg-blue-600 text-white px-4 py-2 text-sm font-semibold hover:bg-blue-700; }

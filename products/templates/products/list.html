@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <form method="get" class="mb-6">
+    <input type="search" name="q" value="{{ query }}" placeholder="{% trans 'Search products' %}"
+           class="w-full border rounded px-3 py-2" />
+  </form>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {% for product in object_list %}
+      {% include 'products/partials/_product_card.html' with product=product %}
+    {% empty %}
+      <p class="col-span-full text-center text-gray-500">{% trans 'No products found.' %}</p>
+    {% endfor %}
+  </div>
+  <div class="mt-6">
+    {% if is_paginated %}
+      {% if page_obj.has_previous %}<a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">{% trans 'Previous' %}</a>{% endif %}
+      <span class="mx-2">{{ page_obj.number }}/{{ page_obj.paginator.num_pages }}</span>
+      {% if page_obj.has_next %}<a href="?q={{ query }}&page={{ page_obj.next_page_number }}">{% trans 'Next' %}</a>{% endif %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

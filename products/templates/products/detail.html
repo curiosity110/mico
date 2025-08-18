@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load i18n currency %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-4">{{ object.name }}</h1>
+  <p class="mb-2">
+    <span class="text-xl font-semibold">{{ object.sale_price|currency }}</span>
+    {% if object.sale_price < object.stock_price %}
+      <span class="line-through text-gray-500 ml-2">{{ object.stock_price|currency }}</span>
+    {% endif %}
+  </p>
+  <p class="mb-4">
+    {% if object.stock > 0 %}
+      <span class="text-green-600">{% trans 'In stock' %}</span>
+    {% else %}
+      <span class="text-gray-500">{% trans 'Out of stock' %}</span>
+    {% endif %}
+  </p>
+  <a href="{% url 'products:product-list' %}">{% trans 'Back to products' %}</a>
+</div>
+{% endblock %}
