@@ -1,5 +1,10 @@
+import json
+from pathlib import Path
+
+from django.conf import settings
 from django.db.models import Q
-from django.views.generic import ListView, DetailView
+from django.http import Http404
+from django.views.generic import TemplateView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, ListAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import serializers
@@ -10,28 +15,39 @@ from products.models import Product
 from products.serializers import ProductSerializer
 
 
-class ProductListView(ListView):
-    model = Product
-    template_name = "products/list.html"
-    paginate_by = 12
+def _load_products():
+    data_path = Path(settings.BASE_DIR) / "static" / "mock" / "products.json"
+    with open(data_path, encoding="utf-8") as f:
+        return json.load(f)
 
-    def get_queryset(self):
-        qs = super().get_queryset()
-        q = self.request.GET.get("q")
-        if q:
-            qs = qs.filter(name__icontains=q)
-        return qs
+
+class ProductListView(TemplateView):
+    template_name = "products/list.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["query"] = self.request.GET.get("q", "")
+        products = _load_products()
+        q = self.request.GET.get("q")
+        if q:
+            products = [p for p in products if q.lower() in p["name"].lower()]
+        context["object_list"] = products
+        context["query"] = q or ""
         return context
 
 
-class ProductDetailView(DetailView):
-    model = Product
+class ProductDetailView(TemplateView):
     template_name = "products/detail.html"
-    slug_field = "slug"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        slug = self.kwargs.get("slug")
+        products = _load_products()
+        try:
+            product = next(p for p in products if p["slug"] == slug)
+        except StopIteration:
+            raise Http404
+        context["object"] = product
+        return context
 
 
 class ProductSearchApiView(ListAPIView):

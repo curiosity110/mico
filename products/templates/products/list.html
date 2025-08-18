@@ -14,12 +14,5 @@
       <p class="col-span-full text-center text-gray-500">{% trans 'No products found.' %}</p>
     {% endfor %}
   </div>
-  <div class="mt-6">
-    {% if is_paginated %}
-      {% if page_obj.has_previous %}<a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">{% trans 'Previous' %}</a>{% endif %}
-      <span class="mx-2">{{ page_obj.number }}/{{ page_obj.paginator.num_pages }}</span>
-      {% if page_obj.has_next %}<a href="?q={{ query }}&page={{ page_obj.next_page_number }}">{% trans 'Next' %}</a>{% endif %}
-    {% endif %}
-  </div>
 </div>
 {% endblock %}
