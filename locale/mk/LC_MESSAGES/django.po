@@ -89,3 +89,42 @@ msgstr "Нема залиха"
 
 msgid "View details"
 msgstr "Детали"
+
+msgid "Home"
+msgstr "Почетна"
+
+msgid "FAQ"
+msgstr "Прашања и одговори"
+
+msgid "Search"
+msgstr "Пребарај"
+
+msgid "Our Products"
+msgstr "Наши производи"
+
+msgid "About Us"
+msgstr "За нас"
+
+msgid "Contact Us"
+msgstr "Контакт"
+
+msgid "Development"
+msgstr "Развој"
+
+msgid "Our experience with orders and clients grows every day."
+msgstr "Нашето искуство со нарачки и клиенти расте секој ден."
+
+msgid "How do I place an order?"
+msgstr "Како да направам нарачка?"
+
+msgid "Select a product and follow the checkout instructions."
+msgstr "Изберете производ и следете ги упатствата за нарачка."
+
+msgid "What payment methods are available?"
+msgstr "Кои начини на плаќање се достапни?"
+
+msgid "We currently offer cash on delivery."
+msgstr "Моментално нудиме плаќање при достава."
+
+msgid "Certificates & Compliance"
+msgstr "Сертификати и усогласеност"

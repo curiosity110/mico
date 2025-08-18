@@ -1,6 +1,13 @@
 from django.urls import path
 from . import views
-from core.views import ProductPageFormView, ThankYouView, TestView
+from core.views import (
+    ProductPageFormView,
+    ThankYouView,
+    TestView,
+    AboutView,
+    FAQView,
+    ContactView,
+)
 
 app_name = "core"
 urlpatterns = [
@@ -12,4 +19,7 @@ urlpatterns = [
     ),
     path("thank-you/", ThankYouView.as_view(), name="thank-you"),
     path("test/", TestView.as_view(), name="test"),
+    path("about/", AboutView.as_view(), name="about"),
+    path("faq/", FAQView.as_view(), name="faq"),
+    path("contact/", ContactView.as_view(), name="contact"),
 ]
