@@ -117,19 +117,6 @@
       </div>
     </section>
 
-    <!-- PRODUCTS: dynamic featured -->
-    <section id="products" class="py-12">
-      <div class="mb-6 flex items-end justify-between">
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'Products' %}</h2>
-        <a href="/products/" class="text-sm text-brand-600 hover:underline">{% trans 'View all' %}</a>
-      </div>
-
-      <div class="swiper" id="featured-swiper">
-        <div class="swiper-wrapper" id="featured-products"></div>
-      <div class="swiper-pagination featured-dots mt-6"></div>
-      </div>
-    </section>
-
     <!-- DEVELOPMENT -->
     <section id="development" class="py-12">
       <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'Development' %}</h2>
@@ -179,7 +166,7 @@
 {% endblock %}
 
 {% block scripts %}
-<!-- INIT: Certificates & Featured Products -->
+<!-- INIT: Certificates -->
 <script>
   async function loadCerts() {
     const lang = document.documentElement.lang || 'en';
@@ -224,55 +211,6 @@
     }
   }
 
-  async function loadFeatured() {
-    const lang = document.documentElement.lang || 'en';
-    let products = [];
-    try {
-      const res = await fetch("{% static 'mock/featured_products.json' %}");
-      products = await res.json();
-    } catch (err) {
-      products = [];
-    }
-    const featured = products.slice(0, 3);
-    const wrapper = document.getElementById('featured-products');
-    wrapper.innerHTML = featured.map(p => `
-      <div class="swiper-slide">
-        <div class="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden flex flex-col">
-          <div class="aspect-square overflow-hidden bg-gray-100">
-            <img src="${p.image_url || 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg'}" alt="${p.name[lang] || p.name.en}" class="h-full w-full object-cover">
-          </div>
-          <div class="p-4 flex flex-col flex-1">
-            <h3 class="text-base font-semibold text-gray-900 line-clamp-2">${p.name[lang] || p.name.en}</h3>
-            <div class="mt-auto">
-              <button data-product-id="${p.id}" class="buy-btn mt-4 inline-flex items-center rounded-xl bg-blue-600 text-white px-4 py-2 text-sm font-semibold hover:bg-blue-700">{% trans 'Buy' %}</button>
-            </div>
-          </div>
-        </div>
-      </div>`).join('');
-
-    new Swiper('#featured-swiper', {
-      slidesPerView: 1,
-      spaceBetween: 16,
-      loop: true,
-      grabCursor: true,
-      breakpoints: {
-        768:  { slidesPerView: 2, spaceBetween: 24 },
-      },
-      pagination: {
-        el: '.featured-dots',
-        clickable: true,
-      },
-      keyboard: { enabled: true },
-      mousewheel: { forceToAxis: true },
-    });
-
-    wrapper.addEventListener('click', function (e) {
-      const btn = e.target.closest('.buy-btn');
-      if (btn) openOrderModal(btn.dataset.productId);
-    });
-  }
-
   loadCerts();
-  loadFeatured();
 </script>
 {% endblock %}
