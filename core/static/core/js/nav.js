@@ -33,9 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const q = input.value.trim();
     if (!q) { render([]); return; }
     try {
-      const resp = await fetch(`/api/products/?q=${encodeURIComponent(q)}`);
+      const resp = await fetch('/static/mock/products.json');
       const data = await resp.json();
-      render(data.results ? data.results.slice(0,5) : []);
+      const filtered = data.filter(p => p.name.toLowerCase().includes(q.toLowerCase())).slice(0,5);
+      render(filtered);
     } catch (e) {
       render([]);
     }

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block content %}
   <!-- TRUST/PAYMENT BAR (pay in person & invoices) -->
@@ -67,9 +67,9 @@
     <!-- ABOUT THE FIRM -->
     <section id="about" class="py-12">
       <div class="mb-6">
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'About the Firm' %}</h2>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'About Us' %}</h2>
         <p class="text-gray-600 mt-2 max-w-3xl">
-          {% trans 'We are a trusted local supplier focused on health, quality and transparent service. Our team ensures timely delivery, certified products and a human-first approach.' %}
+          {% trans 'Our company delivers certified health products with transparent service and long-term partnerships.' %}
         </p>
       </div>
 
@@ -77,17 +77,17 @@
         <div class="rounded-2xl border border-gray-200 bg-white p-6 card-hover">
           <div class="text-3xl text-brand-600">🏢</div>
           <h3 class="mt-2 font-semibold text-gray-900">{% trans 'Who we are' %}</h3>
-          <p class="text-sm text-gray-600 mt-1">{% trans 'Local company with verified partners and certified production lines.' %}</p>
+          <p class="text-sm text-gray-600 mt-1">{% trans 'Locally established with vetted partners and compliant facilities.' %}</p>
         </div>
         <div class="rounded-2xl border border-gray-200 bg-white p-6 card-hover">
           <div class="text-3xl text-brand-600">🧪</div>
           <h3 class="mt-2 font-semibold text-gray-900">{% trans 'Quality' %}</h3>
-          <p class="text-sm text-gray-600 mt-1">{% trans 'ISO/HACCP compliant procedures and regular third-party testing.' %}</p>
+          <p class="text-sm text-gray-600 mt-1">{% trans 'ISO/HACCP procedures backed by regular third-party audits.' %}</p>
         </div>
         <div class="rounded-2xl border border-gray-200 bg-white p-6 card-hover">
           <div class="text-3xl text-brand-600">🤝</div>
           <h3 class="mt-2 font-semibold text-gray-900">{% trans 'Service' %}</h3>
-          <p class="text-sm text-gray-600 mt-1">{% trans 'Order online; pay at delivery with an official invoice. We can confirm by phone.' %}</p>
+          <p class="text-sm text-gray-600 mt-1">{% trans 'Online ordering with in-person payment and official invoicing.' %}</p>
         </div>
       </div>
 
@@ -111,55 +111,7 @@
       </div>
 
       <div class="swiper" id="certs-swiper">
-        <div class="swiper-wrapper">
-          <!-- Slide 1 -->
-          <div class="swiper-slide">
-            <div class="rounded-2xl border border-gray-200 bg-white p-4 h-full card-hover">
-              <img src="https://images.unsplash.com/photo-1554224155-3a589877462f?q=80&w=1200&auto=format&fit=crop"
-                   class="w-full h-48 object-cover rounded-lg" alt="ISO certificate">
-              <div class="mt-3">
-                <div class="text-sm font-semibold">ISO 9001</div>
-                <p class="text-xs text-gray-600">{% trans 'Quality Management — audited annually.' %}</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 2 -->
-          <div class="swiper-slide">
-            <div class="rounded-2xl border border-gray-200 bg-white p-4 h-full card-hover">
-              <img src="https://images.unsplash.com/photo-1616587226157-48b349bfc1f5?q=80&w=1200&auto=format&fit=crop"
-                   class="w-full h-48 object-cover rounded-lg" alt="Food Safety">
-              <div class="mt-3">
-                <div class="text-sm font-semibold">ISO 22000 / HACCP</div>
-                <p class="text-xs text-gray-600">{% trans 'Food Safety Management — full compliance.' %}</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="swiper-slide">
-            <div class="rounded-2xl border border-gray-200 bg-white p-4 h-full card-hover">
-              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop"
-                   class="w-full h-48 object-cover rounded-lg" alt="GMP">
-              <div class="mt-3">
-                <div class="text-sm font-semibold">GMP</div>
-                <p class="text-xs text-gray-600">{% trans 'Good Manufacturing Practice — verified suppliers.' %}</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 4 -->
-          <div class="swiper-slide">
-            <div class="rounded-2xl border border-gray-200 bg-white p-4 h-full card-hover">
-              <img src="https://images.unsplash.com/photo-1621447504863-c1cfbc9c71f1?q=80&w=1200&auto=format&fit=crop"
-                   class="w-full h-48 object-cover rounded-lg" alt="CE">
-              <div class="mt-3">
-                <div class="text-sm font-semibold">CE</div>
-                <p class="text-xs text-gray-600">{% trans 'Conformité Européenne — market compliant.' %}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="swiper-wrapper" id="certs-wrapper"></div>
         <!-- dots -->
         <div class="swiper-pagination certs-dots mt-6"></div>
       </div>
@@ -247,37 +199,57 @@
 {% block scripts %}
 <!-- INIT: Certificates & Featured Products -->
 <script>
-  new Swiper('#certs-swiper', {
-    slidesPerView: 1.2,
-    spaceBetween: 16,
-    loop: true,
-    grabCursor: true,
-    breakpoints: {
-      640:  { slidesPerView: 2.2, spaceBetween: 20 },
-      768:  { slidesPerView: 3,   spaceBetween: 24 },
-      1024: { slidesPerView: 4,   spaceBetween: 24 },
-    },
-    navigation: {
-      nextEl: '.certs-next',
-      prevEl: '.certs-prev',
-    },
-    pagination: {
-      el: '.certs-dots',
-      clickable: true,
-    },
-    keyboard: { enabled: true },
-    mousewheel: { forceToAxis: true },
-  });
+  async function loadCerts() {
+    const lang = document.documentElement.lang || 'en';
+    try {
+      const res = await fetch("{% static 'mock/certificates.json' %}");
+      const certs = await res.json();
+      const wrapper = document.getElementById('certs-wrapper');
+      wrapper.innerHTML = certs.map(c => `
+        <div class="swiper-slide">
+          <div class="rounded-2xl border border-gray-200 bg-white p-4 h-full card-hover">
+            <img src="${c.image_url}" class="w-full h-48 object-cover rounded-lg" alt="${c.name[lang] || c.name.en}">
+            <div class="mt-3">
+              <div class="text-sm font-semibold">${c.name[lang] || c.name.en}</div>
+              <p class="text-xs text-gray-600">${c.description[lang] || c.description.en}</p>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      new Swiper('#certs-swiper', {
+        slidesPerView: 1.2,
+        spaceBetween: 16,
+        loop: true,
+        grabCursor: true,
+        breakpoints: {
+          640:  { slidesPerView: 2.2, spaceBetween: 20 },
+          768:  { slidesPerView: 3,   spaceBetween: 24 },
+          1024: { slidesPerView: 4,   spaceBetween: 24 },
+        },
+        navigation: {
+          nextEl: '.certs-next',
+          prevEl: '.certs-prev',
+        },
+        pagination: {
+          el: '.certs-dots',
+          clickable: true,
+        },
+        keyboard: { enabled: true },
+        mousewheel: { forceToAxis: true },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   async function loadFeatured() {
-    const API_BASE = window.APP_CONFIG.API_BASE;
+    const lang = document.documentElement.lang || 'en';
     let products = [];
     try {
-      const res = await fetch(`${API_BASE}/products/`);
-      if (!res.ok) throw new Error('Network');
+      const res = await fetch("{% static 'mock/featured_products.json' %}");
       products = await res.json();
     } catch (err) {
-      products = [{ id: 1, name: 'Sample Product', image_url: '' }];
+      products = [];
     }
     const featured = products.slice(0, 3);
     const wrapper = document.getElementById('featured-products');
@@ -285,10 +257,10 @@
       <div class="swiper-slide">
         <div class="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden flex flex-col">
           <div class="aspect-square overflow-hidden bg-gray-100">
-            <img src="${p.image_url || 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg'}" alt="${p.name}" class="h-full w-full object-cover">
+            <img src="${p.image_url || 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg'}" alt="${p.name[lang] || p.name.en}" class="h-full w-full object-cover">
           </div>
           <div class="p-4 flex flex-col flex-1">
-            <h3 class="text-base font-semibold text-gray-900 line-clamp-2">${p.name}</h3>
+            <h3 class="text-base font-semibold text-gray-900 line-clamp-2">${p.name[lang] || p.name.en}</h3>
             <div class="mt-auto">
               <button data-product-id="${p.id}" class="buy-btn mt-4 inline-flex items-center rounded-xl bg-blue-600 text-white px-4 py-2 text-sm font-semibold hover:bg-blue-700">{% trans 'Buy' %}</button>
             </div>
@@ -320,6 +292,7 @@
     });
   }
 
+  loadCerts();
   loadFeatured();
 </script>
 {% endblock %}
