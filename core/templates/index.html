@@ -17,15 +17,6 @@
       </a>
 
       <div class="flex items-center gap-3 ml-auto">
-        <!-- Language switcher (replace with set_language form if you use it) -->
-        <div class="hidden sm:flex items-center gap-1 rounded-xl border border-gray-200 bg-white/70 backdrop-blur px-2 py-1">
-          <a href="/mk/" class="px-2 py-1 text-xs hover:text-brand-600">MK</a>
-          <span class="text-gray-300">|</span>
-          <a href="/en/" class="px-2 py-1 text-xs hover:text-brand-600">EN</a>
-          <span class="text-gray-300">|</span>
-          <a href="/al/" class="px-2 py-1 text-xs hover:text-brand-600">AL</a>
-        </div>
-
         <!-- hamburger -->
         <button id="menuToggle" class="md:hidden inline-flex items-center justify-center rounded-xl p-2 bg-white/40 backdrop-blur-sm ring-1 ring-inset ring-gray-200 hover:bg-white/70 transition">
           <span class="sr-only">Menu</span>
@@ -212,25 +203,16 @@
       </div>
     </section>
 
-    <!-- PRODUCTS: WORKING CAROUSEL (uses your product_card partial) -->
+    <!-- PRODUCTS: dynamic featured -->
     <section id="products" class="py-12">
       <div class="mb-6 flex items-end justify-between">
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'All Products' %}</h2>
-        <div class="flex items-center gap-2">
-          <div class="swiper-button-prev prods-prev"></div>
-          <div class="swiper-button-next prods-next"></div>
-        </div>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'Featured Products' %}</h2>
+        <a href="/products/" class="text-sm text-brand-600 hover:underline">{% trans 'View all' %}</a>
       </div>
 
-      <div class="swiper" id="products-swiper">
-        <div class="swiper-wrapper">
-          {% for p in products %}
-            <div class="swiper-slide">
-              {% include "components/product_card.html" with label=p.label desc=p.desc img=p.img %}
-            </div>
-          {% endfor %}
-        </div>
-        <div class="swiper-pagination prods-dots mt-6"></div>
+      <div class="swiper" id="featured-swiper">
+        <div class="swiper-wrapper" id="featured-products"></div>
+        <div class="swiper-pagination featured-dots mt-6"></div>
       </div>
     </section>
 
@@ -301,7 +283,7 @@
 {% endblock %}
 
 {% block scripts %}
-<!-- INIT: Certificates & Products Swipers (WORKING) -->
+<!-- INIT: Certificates & Featured Products -->
 <script>
   new Swiper('#certs-swiper', {
     slidesPerView: 1.2,
@@ -325,27 +307,57 @@
     mousewheel: { forceToAxis: true },
   });
 
-  new Swiper('#products-swiper', {
-    slidesPerView: 1.1,
-    spaceBetween: 16,
-    loop: true,
-    grabCursor: true,
-    breakpoints: {
-      640:  { slidesPerView: 2.1, spaceBetween: 20 },
-      768:  { slidesPerView: 3,   spaceBetween: 24 },
-      1024: { slidesPerView: 4,   spaceBetween: 24 },
-      1280: { slidesPerView: 5,   spaceBetween: 28 },
-    },
-    navigation: {
-      nextEl: '.prods-next',
-      prevEl: '.prods-prev',
-    },
-    pagination: {
-      el: '.prods-dots',
-      clickable: true,
-    },
-    keyboard: { enabled: true },
-    mousewheel: { forceToAxis: true },
-  });
+  async function loadFeatured() {
+    const API_BASE = window.APP_CONFIG.API_BASE;
+    let products = [];
+    try {
+      const res = await fetch(`${API_BASE}/products/`);
+      if (!res.ok) throw new Error('Network');
+      products = await res.json();
+    } catch (err) {
+      products = [{ id: 1, name: 'Sample Product', image_url: '' }];
+    }
+    const featured = products.slice(0, 3);
+    const wrapper = document.getElementById('featured-products');
+    wrapper.innerHTML = featured.map(p => `
+      <div class="swiper-slide">
+        <div class="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden flex flex-col">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img src="${p.image_url || 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg'}" alt="${p.name}" class="h-full w-full object-cover">
+          </div>
+          <div class="p-4 flex flex-col flex-1">
+            <h3 class="text-base font-semibold text-gray-900 line-clamp-2">${p.name}</h3>
+            <div class="mt-auto">
+              <button data-product-id="${p.id}" class="buy-btn mt-4 inline-flex items-center rounded-xl bg-blue-600 text-white px-4 py-2 text-sm font-semibold hover:bg-blue-700">{% trans 'Buy' %}</button>
+            </div>
+          </div>
+        </div>
+      </div>`).join('');
+
+    new Swiper('#featured-swiper', {
+      slidesPerView: 1.1,
+      spaceBetween: 16,
+      loop: true,
+      grabCursor: true,
+      breakpoints: {
+        640:  { slidesPerView: 2.1, spaceBetween: 20 },
+        768:  { slidesPerView: 3,   spaceBetween: 24 },
+        1024: { slidesPerView: 4,   spaceBetween: 24 },
+      },
+      pagination: {
+        el: '.featured-dots',
+        clickable: true,
+      },
+      keyboard: { enabled: true },
+      mousewheel: { forceToAxis: true },
+    });
+
+    wrapper.addEventListener('click', function (e) {
+      const btn = e.target.closest('.buy-btn');
+      if (btn) openOrderModal(btn.dataset.productId);
+    });
+  }
+
+  loadFeatured();
 </script>
 {% endblock %}
