@@ -1,36 +1,39 @@
 {% load i18n static %}
 <nav class="bg-white border-b" data-site-nav>
-  <div class="container mx-auto flex items-center justify-between h-12 px-4">
-    <a href="/" class="font-bold">{% trans 'Home' %}</a>
-    <div class="hidden md:flex space-x-4">
+  <div class="container mx-auto h-12 px-4 flex items-center justify-between">
+    <button id="menuToggle" class="md:hidden">☰</button>
+
+    <a href="/" class="mx-auto md:mx-0 flex items-center">
+      <img src="https://dummyimage.com/80x40/ffffff/000000.png&text=Logo" alt="Logo" class="h-8" />
+    </a>
+
+    <div class="hidden md:flex md:space-x-4 md:ml-6">
+      <a href="/" class="hover:text-brand-600">{% trans 'Home' %}</a>
       <a href="/products/" class="hover:text-brand-600">{% trans 'Products' %}</a>
-      <a href="#about" class="hover:text-brand-600">{% trans 'About Us' %}</a>
-      <a href="#certs" class="hover:text-brand-600">{% trans 'Certificates' %}</a>
-      <a href="#contact" class="hover:text-brand-600">{% trans 'Contact' %}</a>
+      <a href="/about/" class="hover:text-brand-600">{% trans 'About Us' %}</a>
+      <a href="/faq/" class="hover:text-brand-600">{% trans 'FAQ' %}</a>
+      <a href="/contact/" class="hover:text-brand-600">{% trans 'Contact' %}</a>
     </div>
+
     <div class="flex items-center space-x-3 ml-auto">
       <div class="relative">
         <input id="nav-search" type="search" placeholder="{% trans 'Search' %}" class="border rounded px-2 py-1" />
         <ul id="nav-search-results" class="hidden absolute bg-white border mt-1 w-full"></ul>
       </div>
-      <form action="{% url 'set_language' %}" method="post">
+      <form action="{% url 'set_language' %}" method="post" class="flex items-center space-x-1">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ request.path }}" />
-        <select name="language" onchange="this.form.submit()" class="border rounded px-2 py-1">
-          {% get_current_language as LANGUAGE_CODE %}
-          {% get_available_languages as LANGUAGES %}
-          {% for lang in LANGUAGES %}
-            <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>{{ lang.1 }}</option>
-          {% endfor %}
-        </select>
+        <button type="submit" name="language" value="mk">🇲🇰</button>
+        <button type="submit" name="language" value="en">🇬🇧</button>
+        <button type="submit" name="language" value="sq">🇦🇱</button>
       </form>
-      <button id="menuToggle" class="md:hidden">☰</button>
     </div>
   </div>
   <div id="mobileMenu" class="md:hidden hidden px-4 pb-2 space-y-1">
+    <a href="/" class="block py-1">{% trans 'Home' %}</a>
     <a href="/products/" class="block py-1">{% trans 'Products' %}</a>
-    <a href="#about" class="block py-1">{% trans 'About Us' %}</a>
-    <a href="#certs" class="block py-1">{% trans 'Certificates' %}</a>
-    <a href="#contact" class="block py-1">{% trans 'Contact' %}</a>
+    <a href="/about/" class="block py-1">{% trans 'About Us' %}</a>
+    <a href="/faq/" class="block py-1">{% trans 'FAQ' %}</a>
+    <a href="/contact/" class="block py-1">{% trans 'Contact' %}</a>
   </div>
 </nav>

@@ -35,8 +35,8 @@
             {% trans 'Order online and pay in person. We provide an invoice and follow up if needed.' %}
           </p>
           <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#products" class="inline-flex items-center rounded-xl bg-white text-brand-800 px-6 py-3 text-sm font-semibold shadow-md hover:bg-gray-100">
-              {% trans 'Browse Products' %}
+            <a href="/products/" class="inline-flex items-center rounded-xl bg-white text-brand-800 px-6 py-3 text-sm font-semibold shadow-md hover:bg-gray-100">
+              {% trans 'Our Products' %}
             </a>
             <a href="#certs" class="inline-flex items-center rounded-xl border border-white/40 px-6 py-3 text-sm font-semibold hover:bg-white/10">
               {% trans 'View Certificates' %}
@@ -120,40 +120,22 @@
     <!-- PRODUCTS: dynamic featured -->
     <section id="products" class="py-12">
       <div class="mb-6 flex items-end justify-between">
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'Featured Products' %}</h2>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'Products' %}</h2>
         <a href="/products/" class="text-sm text-brand-600 hover:underline">{% trans 'View all' %}</a>
       </div>
 
       <div class="swiper" id="featured-swiper">
         <div class="swiper-wrapper" id="featured-products"></div>
-        <div class="swiper-pagination featured-dots mt-6"></div>
+      <div class="swiper-pagination featured-dots mt-6"></div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="py-12">
-      <div class="max-w-lg">
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'Contact Us' %}</h2>
-        <form class="mt-6 space-y-4" method="post">
-          {% csrf_token %}
-          <div>
-            <label class="block text-sm font-medium text-gray-700">{% trans 'Name' %}</label>
-            <input class="mt-1 block w-full rounded-xl border-gray-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-500 p-3" type="text" name="name" placeholder="{% trans 'Name' %}">
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700">{% trans 'Email' %}</label>
-            <input class="mt-1 block w-full rounded-xl border-gray-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-500 p-3" type="email" name="email" placeholder="{% trans 'Email' %}">
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700">{% trans 'Message' %}</label>
-            <textarea class="mt-1 block w-full rounded-xl border-gray-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-500 p-3" name="message" rows="4" placeholder="{% trans 'Message' %}"></textarea>
-          </div>
-          <button class="inline-flex items-center rounded-xl bg-brand-600 text-white px-5 py-3 text-sm font-semibold hover:bg-brand-700 shadow-sm" type="submit">
-            {% trans 'Send' %}
-          </button>
-        </form>
-      </div>
+    <!-- DEVELOPMENT -->
+    <section id="development" class="py-12">
+      <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'Development' %}</h2>
+      <p class="mt-2 text-gray-600">{% trans 'Our experience with orders and clients grows every day.' %}</p>
     </section>
+
   </main>
 
   <!-- FOOTER -->
@@ -175,9 +157,9 @@
         <div>
           <div class="font-semibold">{% trans 'Useful Links' %}</div>
           <ul class="mt-2 space-y-1 text-brand-100">
-            <li><a href="#about" class="hover:text-white">{% trans 'About Us' %}</a></li>
-            <li><a href="#certs" class="hover:text-white">{% trans 'Certificates' %}</a></li>
-            <li><a href="#contact" class="hover:text-white">{% trans 'Contact' %}</a></li>
+            <li><a href="/about/" class="hover:text-white">{% trans 'About Us' %}</a></li>
+            <li><a href="/faq/" class="hover:text-white">{% trans 'FAQ' %}</a></li>
+            <li><a href="/contact/" class="hover:text-white">{% trans 'Contact' %}</a></li>
           </ul>
         </div>
         <div>
@@ -269,14 +251,12 @@
       </div>`).join('');
 
     new Swiper('#featured-swiper', {
-      slidesPerView: 1.1,
+      slidesPerView: 1,
       spaceBetween: 16,
       loop: true,
       grabCursor: true,
       breakpoints: {
-        640:  { slidesPerView: 2.1, spaceBetween: 20 },
-        768:  { slidesPerView: 3,   spaceBetween: 24 },
-        1024: { slidesPerView: 4,   spaceBetween: 24 },
+        768:  { slidesPerView: 2, spaceBetween: 24 },
       },
       pagination: {
         el: '.featured-dots',

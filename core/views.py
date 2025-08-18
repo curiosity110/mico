@@ -48,3 +48,15 @@ class TestView(TemplateView):
 
 class ThankYouView(TemplateView):
     template_name = "thank_you.html"
+
+
+class AboutView(TemplateView):
+    template_name = "about.html"
+
+
+class FAQView(TemplateView):
+    template_name = "faq.html"
+
+
+class ContactView(TemplateView):
+    template_name = "contact.html"
