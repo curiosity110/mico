@@ -2,160 +2,257 @@
 {% load i18n %}
 
 {% block content %}
-  <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-200">
-    <div class="container mx-auto px-4 h-14 flex items-center">
-      <ul class="hidden md:flex items-center gap-6 text-sm text-gray-700">
-        <li><a href="#about" class="hover:text-blue-600">{% trans 'About' %}</a></li>
-        <li><a href="#products" class="hover:text-blue-600">{% trans 'Products' %}</a></li>
-        <li><a href="#faq" class="hover:text-blue-600">{% trans 'FAQ' %}</a></li>
-        <li><a href="#contact" class="hover:text-blue-600">{% trans 'Contact' %}</a></li>
+  <!-- NAVBAR (languages outside hamburger) -->
+  <nav data-site-nav class="sticky top-0 z-40 border-b border-gray-200 transition">
+    <div class="container mx-auto px-4 h-14 flex items-center justify-between">
+      <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
+        <li><a href="#about" class="hover:text-brand-600">{% trans 'About' %}</a></li>
+        <li><a href="#products" class="hover:text-brand-600">{% trans 'Products' %}</a></li>
+        <li><a href="#certs" class="hover:text-brand-600">{% trans 'Certificates' %}</a></li>
+        <li><a href="#contact" class="hover:text-brand-600">{% trans 'Contact' %}</a></li>
       </ul>
-      <button class="md:hidden ml-auto inline-flex items-center justify-center rounded-lg p-2 border border-gray-300" id="menuToggle">
-        <span class="sr-only">Menu</span> &#9776;
-      </button>
+
+      <a href="#" class="md:absolute left-1/2 -translate-x-1/2 text-base font-extrabold text-brand-700">
+        {% trans '{{BrandName}}' %}
+      </a>
+
+      <div class="flex items-center gap-3 ml-auto">
+        <!-- Language switcher (replace with set_language form if you use it) -->
+        <div class="hidden sm:flex items-center gap-1 rounded-xl border border-gray-200 bg-white/70 backdrop-blur px-2 py-1">
+          <a href="/mk/" class="px-2 py-1 text-xs hover:text-brand-600">MK</a>
+          <span class="text-gray-300">|</span>
+          <a href="/en/" class="px-2 py-1 text-xs hover:text-brand-600">EN</a>
+          <span class="text-gray-300">|</span>
+          <a href="/al/" class="px-2 py-1 text-xs hover:text-brand-600">AL</a>
+        </div>
+
+        <!-- hamburger -->
+        <button id="menuToggle" class="md:hidden inline-flex items-center justify-center rounded-xl p-2 bg-white/40 backdrop-blur-sm ring-1 ring-inset ring-gray-200 hover:bg-white/70 transition">
+          <span class="sr-only">Menu</span>
+          <div id="menuIcon" class="w-6 h-4 relative">
+            <span class="line line-1 absolute inset-x-0 top-0 h-0.5 bg-gray-800 rounded"></span>
+            <span class="line line-2 absolute inset-x-0 top-1/2 -translate-y-1/2 h-0.5 bg-gray-800 rounded"></span>
+            <span class="line line-3 absolute inset-x-0 bottom-0 h-0.5 bg-gray-800 rounded"></span>
+          </div>
+        </button>
+      </div>
     </div>
-    <div class="md:hidden hidden border-t border-gray-200 bg-white" id="mobileMenu">
-      <div class="container mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
-        <a class="py-2" href="#about">{% trans 'About' %}</a>
-        <a class="py-2" href="#products">{% trans 'Products' %}</a>
-        <a class="py-2" href="#faq">{% trans 'FAQ' %}</a>
-        <a class="py-2" href="#contact">{% trans 'Contact' %}</a>
+
+    <!-- mobile menu -->
+    <div class="md:hidden hidden border-t border-gray-200 bg-white/95 backdrop-blur" id="mobileMenu">
+      <div class="container mx-auto px-4 py-3 flex flex-col gap-1 text-sm">
+        <a class="py-2 hover:text-brand-600" href="#about">{% trans 'About' %}</a>
+        <a class="py-2 hover:text-brand-600" href="#products">{% trans 'Products' %}</a>
+        <a class="py-2 hover:text-brand-600" href="#certs">{% trans 'Certificates' %}</a>
+        <a class="py-2 hover:text-brand-600" href="#contact">{% trans 'Contact' %}</a>
       </div>
     </div>
   </nav>
-  <script>
-    document.addEventListener('click', (e)=>{
-      if(e.target.closest('#menuToggle')){
-        document.getElementById('mobileMenu')?.classList.toggle('hidden');
-      }
-    });
-  </script>
+
+  <!-- TRUST/PAYMENT BAR (pay in person & invoices) -->
+  <div class="bg-white/70 backdrop-blur border-b border-gray-200">
+    <div class="container mx-auto px-4 py-2 text-xs sm:text-sm text-gray-700 flex flex-wrap gap-3 items-center justify-center">
+      <span class="inline-flex items-center gap-1"><span>🧾</span> {% trans 'Invoice provided' %}</span>
+      <span class="text-gray-300">•</span>
+      <span class="inline-flex items-center gap-1"><span>🤝</span> {% trans 'Order online, pay in person' %}</span>
+      <span class="text-gray-300">•</span>
+      <span class="inline-flex items-center gap-1"><span>📞</span> {% trans 'We may call to confirm if needed' %}</span>
+    </div>
+  </div>
 
   <main class="container mx-auto px-4">
-    <!-- HERO -->
-    <section id="hero" class="relative overflow-hidden rounded-3xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white mt-6">
-      <div class="px-6 sm:px-10 py-16 sm:py-20">
-        <h1 class="max-w-2xl text-3xl sm:text-5xl font-extrabold tracking-tight">
-          {% trans '{{HeroTitle}}' %}
-        </h1>
-        <p class="mt-4 max-w-2xl text-white/90">{% trans '{{HeroSubtitle}}' %}</p>
-        <div class="mt-8 flex gap-3">
-          <a href="#products" class="inline-flex items-center rounded-xl bg-white text-gray-900 px-5 py-3 text-sm font-semibold hover:bg-gray-100">
-            {% trans '{{Browse Products}}' %}
-          </a>
-          <a href="#contact" class="inline-flex items-center rounded-xl border border-white/30 px-5 py-3 text-sm font-semibold hover:bg-white/10">
-            {% trans '{{Contact Us}}' %}
-          </a>
+    <!-- NEW HERO: split layout (image + copy), green gradient -->
+    <section id="hero" class="relative overflow-hidden rounded-3xl bg-gradient-to-tr from-brand-700 via-brand-600 to-brand-500 text-white mt-6">
+      <!-- background glyphs -->
+      <div class="absolute inset-0 opacity-15 pointer-events-none select-none">
+        <div class="absolute -left-6 top-8 text-7xl">🌿</div>
+        <div class="absolute right-6 top-12 text-7xl">🛡️</div>
+        <div class="absolute left-1/3 bottom-8 text-6xl">🤝</div>
+        <div class="absolute right-1/4 bottom-16 text-6xl">🧾</div>
+      </div>
+      <div class="relative grid grid-cols-1 md:grid-cols-2 gap-6 items-center px-6 sm:px-10 py-12 sm:py-16">
+        <div>
+          <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide uppercase bg-white/15 px-3 py-1 rounded-full ring-1 ring-white/20">
+            {% trans 'Certified • Trust-first • Local' %}
+          </span>
+          <h1 class="mt-4 text-3xl sm:text-5xl font-extrabold leading-tight">
+            {% trans 'Health products you can trust.' %}
+          </h1>
+          <p class="mt-4 text-white/90 text-base sm:text-lg">
+            {% trans 'Order online and pay in person. We provide an invoice and follow up if needed.' %}
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#products" class="inline-flex items-center rounded-xl bg-white text-brand-800 px-6 py-3 text-sm font-semibold shadow-md hover:bg-gray-100">
+              {% trans 'Browse Products' %}
+            </a>
+            <a href="#certs" class="inline-flex items-center rounded-xl border border-white/40 px-6 py-3 text-sm font-semibold hover:bg-white/10">
+              {% trans 'View Certificates' %}
+            </a>
+          </div>
+
+          <!-- mini trust logos row -->
+          <div class="mt-8 grid grid-cols-3 sm:grid-cols-5 gap-4 opacity-95">
+            <div class="glass rounded-xl p-3 text-center text-xs">ISO 9001</div>
+            <div class="glass rounded-xl p-3 text-center text-xs">ISO 22000</div>
+            <div class="glass rounded-xl p-3 text-center text-xs">HACCP</div>
+            <div class="glass rounded-xl p-3 text-center text-xs">CE</div>
+            <div class="glass rounded-xl p-3 text-center text-xs">GMP</div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-2xl bg-white/10 ring-1 ring-white/20 overflow-hidden shadow-soft">
+            <!-- hero image placeholder (replace with your own) -->
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop"
+                 alt="Healthy products"
+                 class="w-full h-full object-cover opacity-95">
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- USPs -->
-    <section id="about" class="py-10">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-          <div class="text-2xl">🚚</div>
-          <h3 class="mt-2 font-semibold">{% trans '{{Fast delivery}}' %}</h3>
-          <p class="text-sm text-gray-600 mt-1">{% trans '{{Across all markets}}' %}</p>
+    <!-- ABOUT THE FIRM -->
+    <section id="about" class="py-12">
+      <div class="mb-6">
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'About the Firm' %}</h2>
+        <p class="text-gray-600 mt-2 max-w-3xl">
+          {% trans 'We are a trusted local supplier focused on health, quality and transparent service. Our team ensures timely delivery, certified products and a human-first approach.' %}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 card-hover">
+          <div class="text-3xl text-brand-600">🏢</div>
+          <h3 class="mt-2 font-semibold text-gray-900">{% trans 'Who we are' %}</h3>
+          <p class="text-sm text-gray-600 mt-1">{% trans 'Local company with verified partners and certified production lines.' %}</p>
         </div>
-        <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-          <div class="text-2xl">💳</div>
-          <h3 class="mt-2 font-semibold">{% trans '{{Cash on Delivery}}' %}</h3>
-          <p class="text-sm text-gray-600 mt-1">{% trans '{{Pay at doorstep}}' %}</p>
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 card-hover">
+          <div class="text-3xl text-brand-600">🧪</div>
+          <h3 class="mt-2 font-semibold text-gray-900">{% trans 'Quality' %}</h3>
+          <p class="text-sm text-gray-600 mt-1">{% trans 'ISO/HACCP compliant procedures and regular third-party testing.' %}</p>
         </div>
-        <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-          <div class="text-2xl">✅</div>
-          <h3 class="mt-2 font-semibold">{% trans '{{Quality guarantee}}' %}</h3>
-          <p class="text-sm text-gray-600 mt-1">{% trans '{{Trusted supplier}}' %}</p>
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 card-hover">
+          <div class="text-3xl text-brand-600">🤝</div>
+          <h3 class="mt-2 font-semibold text-gray-900">{% trans 'Service' %}</h3>
+          <p class="text-sm text-gray-600 mt-1">{% trans 'Order online; pay at delivery with an official invoice. We can confirm by phone.' %}</p>
         </div>
-        <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-          <div class="text-2xl">📞</div>
-          <h3 class="mt-2 font-semibold">{% trans '{{Support}}' %}</h3>
-          <p class="text-sm text-gray-600 mt-1">{% trans '{{We call to confirm}}' %}</p>
-        </div>
+      </div>
+
+      <!-- tiny timeline -->
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+        <div class="rounded-xl border border-gray-200 bg-white p-4"><strong>2019</strong> — {% trans 'Founded with a focus on wellness.' %}</div>
+        <div class="rounded-xl border border-gray-200 bg-white p-4"><strong>2021</strong> — {% trans 'Expanded certified product lines.' %}</div>
+        <div class="rounded-xl border border-gray-200 bg-white p-4"><strong>2024</strong> — {% trans 'Cross-market delivery & 24/7 support.' %}</div>
       </div>
     </section>
 
-    <section id="products" class="py-12">
-      <!-- Featured (first 3) -->
+    <!-- CERTIFICATES: WORKING CAROUSEL -->
+    <section id="certs" class="py-12">
       <div class="mb-6 flex items-end justify-between">
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight">{% trans '{{Featured Products}}' %}</h2>
-        <a href="#all-products" class="text-sm hover:underline">{% trans '{{View All}}' %}</a>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for _ in "012"|make_list %}
-          {% include "components/product_card.html" with label="ExampleProduct {{ forloop.counter }}" %}
-        {% endfor %}
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'Certificates & Compliance' %}</h2>
+        <div class="flex items-center gap-2">
+          <!-- Swiper default buttons (already styled in main.css) -->
+          <div class="swiper-button-prev certs-prev"></div>
+          <div class="swiper-button-next certs-next"></div>
+        </div>
       </div>
 
-      <!-- All products (10) -->
-      <div id="all-products" class="mt-12 mb-6">
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight">{% trans '{{All Products}}' %}</h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {% for _ in "0123456789"|make_list %}
-          {% include "components/product_card.html" with label="ExampleProduct {{ forloop.counter }}" %}
-        {% endfor %}
+      <div class="swiper" id="certs-swiper">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <div class="rounded-2xl border border-gray-200 bg-white p-4 h-full card-hover">
+              <img src="https://images.unsplash.com/photo-1554224155-3a589877462f?q=80&w=1200&auto=format&fit=crop"
+                   class="w-full h-48 object-cover rounded-lg" alt="ISO certificate">
+              <div class="mt-3">
+                <div class="text-sm font-semibold">ISO 9001</div>
+                <p class="text-xs text-gray-600">{% trans 'Quality Management — audited annually.' %}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <div class="rounded-2xl border border-gray-200 bg-white p-4 h-full card-hover">
+              <img src="https://images.unsplash.com/photo-1616587226157-48b349bfc1f5?q=80&w=1200&auto=format&fit=crop"
+                   class="w-full h-48 object-cover rounded-lg" alt="Food Safety">
+              <div class="mt-3">
+                <div class="text-sm font-semibold">ISO 22000 / HACCP</div>
+                <p class="text-xs text-gray-600">{% trans 'Food Safety Management — full compliance.' %}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <div class="rounded-2xl border border-gray-200 bg-white p-4 h-full card-hover">
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop"
+                   class="w-full h-48 object-cover rounded-lg" alt="GMP">
+              <div class="mt-3">
+                <div class="text-sm font-semibold">GMP</div>
+                <p class="text-xs text-gray-600">{% trans 'Good Manufacturing Practice — verified suppliers.' %}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="swiper-slide">
+            <div class="rounded-2xl border border-gray-200 bg-white p-4 h-full card-hover">
+              <img src="https://images.unsplash.com/photo-1621447504863-c1cfbc9c71f1?q=80&w=1200&auto=format&fit=crop"
+                   class="w-full h-48 object-cover rounded-lg" alt="CE">
+              <div class="mt-3">
+                <div class="text-sm font-semibold">CE</div>
+                <p class="text-xs text-gray-600">{% trans 'Conformité Européenne — market compliant.' %}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- dots -->
+        <div class="swiper-pagination certs-dots mt-6"></div>
       </div>
     </section>
 
-    <section id="stats" class="py-12">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-          <p class="text-3xl font-extrabold text-blue-600">100+</p>
-          <p class="text-gray-600">{% trans 'Clients' %}</p>
+    <!-- PRODUCTS: WORKING CAROUSEL (uses your product_card partial) -->
+    <section id="products" class="py-12">
+      <div class="mb-6 flex items-end justify-between">
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'All Products' %}</h2>
+        <div class="flex items-center gap-2">
+          <div class="swiper-button-prev prods-prev"></div>
+          <div class="swiper-button-next prods-next"></div>
         </div>
-        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-          <p class="text-3xl font-extrabold text-blue-600">50+</p>
-          <p class="text-gray-600">{% trans 'Projects' %}</p>
+      </div>
+
+      <div class="swiper" id="products-swiper">
+        <div class="swiper-wrapper">
+          {% for p in products %}
+            <div class="swiper-slide">
+              {% include "components/product_card.html" with label=p.label desc=p.desc img=p.img %}
+            </div>
+          {% endfor %}
         </div>
-        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-          <p class="text-3xl font-extrabold text-blue-600">24/7</p>
-          <p class="text-gray-600">{% trans '{{Support}}' %}</p>
-        </div>
-        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-          <p class="text-3xl font-extrabold text-blue-600">99%</p>
-          <p class="text-gray-600">{% trans '{{Satisfaction}}' %}</p>
-        </div>
+        <div class="swiper-pagination prods-dots mt-6"></div>
       </div>
     </section>
 
-    <section id="faq" class="py-12">
-      <h2 class="text-xl sm:text-2xl font-bold tracking-tight mb-4">{% trans 'Frequently Asked Questions' %}</h2>
-      <div class="space-y-3">
-        <details class="rounded-xl border border-gray-200 bg-white p-4 open:shadow-sm">
-          <summary class="font-medium cursor-pointer list-none marker:hidden">
-            {% trans 'What is {{BrandName}}?' %}
-          </summary>
-          <p class="mt-2 text-gray-600">{% trans '{{BrandName}} is a demo brochure site.' %}</p>
-        </details>
-        <details class="rounded-xl border border-gray-200 bg-white p-4 open:shadow-sm">
-          <summary class="font-medium cursor-pointer list-none marker:hidden">
-            {% trans 'How do I contact support?' %}
-          </summary>
-          <p class="mt-2 text-gray-600">{% trans 'Use the contact form below.' %}</p>
-        </details>
-      </div>
-    </section>
-
+    <!-- CONTACT -->
     <section id="contact" class="py-12">
       <div class="max-w-lg">
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight">{% trans 'Contact Us' %}</h2>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">{% trans 'Contact Us' %}</h2>
         <form class="mt-6 space-y-4" method="post">
           {% csrf_token %}
           <div>
             <label class="block text-sm font-medium text-gray-700">{% trans 'Name' %}</label>
-            <input class="mt-1 block w-full rounded-xl border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 p-3" type="text" name="name" placeholder="{% trans 'Name' %}">
+            <input class="mt-1 block w-full rounded-xl border-gray-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-500 p-3" type="text" name="name" placeholder="{% trans 'Name' %}">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700">{% trans 'Email' %}</label>
-            <input class="mt-1 block w-full rounded-xl border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 p-3" type="email" name="email" placeholder="{% trans 'Email' %}">
+            <input class="mt-1 block w-full rounded-xl border-gray-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-500 p-3" type="email" name="email" placeholder="{% trans 'Email' %}">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700">{% trans 'Message' %}</label>
-            <textarea class="mt-1 block w-full rounded-xl border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 p-3" name="message" rows="4" placeholder="{% trans 'Message' %}"></textarea>
+            <textarea class="mt-1 block w-full rounded-xl border-gray-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-500 p-3" name="message" rows="4" placeholder="{% trans 'Message' %}"></textarea>
           </div>
-          <button class="inline-flex items-center rounded-xl bg-blue-600 text-white px-5 py-3 text-sm font-semibold hover:bg-blue-700" type="submit">
+          <button class="inline-flex items-center rounded-xl bg-brand-600 text-white px-5 py-3 text-sm font-semibold hover:bg-brand-700 shadow-sm" type="submit">
             {% trans 'Send' %}
           </button>
         </form>
@@ -163,40 +260,92 @@
     </section>
   </main>
 
-  <footer class="mt-16 border-t border-gray-200 bg-white">
-    <div class="container mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
-      <div>
-        <div class="text-base font-semibold">{% trans '{{BrandName}}' %}</div>
-        <p class="mt-2 text-gray-600">{% trans '{{Short brand tagline placeholder}}' %}</p>
+  <!-- FOOTER -->
+  <footer class="mt-16">
+    <div class="rounded-t-3xl bg-gradient-to-tr from-brand-700 to-brand-800 text-white">
+      <div class="container mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
+        <div>
+          <div class="text-base font-semibold">{% trans '{{BrandName}}' %}</div>
+          <p class="mt-2 text-brand-100/90">{% trans '{{Short brand tagline placeholder}}' %}</p>
+        </div>
+        <div>
+          <div class="font-semibold">{% trans 'Contact Us' %}</div>
+          <ul class="mt-2 space-y-1 text-brand-100">
+            <li>123 {% trans "Example Street" %}</li>
+            <li>+389 70 000 000</li>
+            <li><a href="mailto:info@example.com" class="hover:underline text-white">info@example.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-semibold">{% trans 'Useful Links' %}</div>
+          <ul class="mt-2 space-y-1 text-brand-100">
+            <li><a href="#about" class="hover:text-white">{% trans 'About Us' %}</a></li>
+            <li><a href="#certs" class="hover:text-white">{% trans 'Certificates' %}</a></li>
+            <li><a href="#contact" class="hover:text-white">{% trans 'Contact' %}</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-semibold">{% trans 'Legal' %}</div>
+          <ul class="mt-2 space-y-1 text-brand-100">
+            <li><a href="#privacy" class="hover:text-white">{% trans 'Privacy Policy' %}</a></li>
+            <li><a href="#terms" class="hover:text-white">{% trans 'Terms & Conditions' %}</a></li>
+            <li><a href="#complaints" class="hover:text-white">{% trans 'Complaints' %}</a></li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <div class="font-semibold">{% trans 'Contact Us' %}</div>
-        <ul class="mt-2 space-y-1 text-gray-700">
-          <li>123 {% trans "Example Street" %}</li>
-          <li>+389 70 000 000</li>
-          <li><a href="mailto:info@example.com" class="hover:underline">info@example.com</a></li>
-        </ul>
+      <div class="border-t border-brand-700 py-4 text-center text-xs text-brand-100">
+        &copy; {{ now|date:"Y" }} {% trans '{{BrandName}}' %} — {% trans 'All rights reserved' %}.
       </div>
-      <div>
-        <div class="font-semibold">{% trans 'Useful Links' %}</div>
-        <ul class="mt-2 space-y-1">
-          <li><a href="#about" class="hover:text-blue-600">{% trans 'About Us' %}</a></li>
-          <li><a href="#faq" class="hover:text-blue-600">{% trans 'FAQ' %}</a></li>
-          <li><a href="#contact" class="hover:text-blue-600">{% trans 'Contact' %}</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="font-semibold">{% trans 'Legal' %}</div>
-        <ul class="mt-2 space-y-1">
-          <li><a href="#privacy" class="hover:text-blue-600">{% trans 'Privacy Policy' %}</a></li>
-          <li><a href="#terms" class="hover:text-blue-600">{% trans 'Terms & Conditions' %}</a></li>
-          <li><a href="#complaints" class="hover:text-blue-600">{% trans 'Complaints' %}</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="border-t border-gray-200 py-4 text-center text-xs text-gray-500">
-      &copy; {{ now|date:"Y" }} {% trans '{{BrandName}}' %} — {% trans 'All rights reserved' %}.
     </div>
   </footer>
+{% endblock %}
 
+{% block scripts %}
+<!-- INIT: Certificates & Products Swipers (WORKING) -->
+<script>
+  new Swiper('#certs-swiper', {
+    slidesPerView: 1.2,
+    spaceBetween: 16,
+    loop: true,
+    grabCursor: true,
+    breakpoints: {
+      640:  { slidesPerView: 2.2, spaceBetween: 20 },
+      768:  { slidesPerView: 3,   spaceBetween: 24 },
+      1024: { slidesPerView: 4,   spaceBetween: 24 },
+    },
+    navigation: {
+      nextEl: '.certs-next',
+      prevEl: '.certs-prev',
+    },
+    pagination: {
+      el: '.certs-dots',
+      clickable: true,
+    },
+    keyboard: { enabled: true },
+    mousewheel: { forceToAxis: true },
+  });
+
+  new Swiper('#products-swiper', {
+    slidesPerView: 1.1,
+    spaceBetween: 16,
+    loop: true,
+    grabCursor: true,
+    breakpoints: {
+      640:  { slidesPerView: 2.1, spaceBetween: 20 },
+      768:  { slidesPerView: 3,   spaceBetween: 24 },
+      1024: { slidesPerView: 4,   spaceBetween: 24 },
+      1280: { slidesPerView: 5,   spaceBetween: 28 },
+    },
+    navigation: {
+      nextEl: '.prods-next',
+      prevEl: '.prods-prev',
+    },
+    pagination: {
+      el: '.prods-dots',
+      clickable: true,
+    },
+    keyboard: { enabled: true },
+    mousewheel: { forceToAxis: true },
+  });
+</script>
 {% endblock %}
