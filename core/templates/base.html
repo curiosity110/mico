@@ -14,5 +14,41 @@
 </head>
 <body class="min-h-screen bg-gray-50 text-gray-800 antialiased">
   {% block content %}{% endblock %}
+  <div id="discount-popup" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50">
+    <div class="bg-white p-6 rounded-xl w-80">
+      <h2 class="text-lg font-semibold mb-2">Get 20% off</h2>
+      <p class="text-sm mb-4">Enter your name and phone number to receive a 20% discount.</p>
+      <form class="space-y-2">
+        <input type="text" placeholder="Name" class="w-full border rounded p-2" />
+        <input type="tel" placeholder="Phone number" class="w-full border rounded p-2" />
+        <div class="flex justify-end gap-2">
+          <button type="button" id="discount-close" class="px-3 py-1 border rounded">Close</button>
+          <button type="submit" class="px-3 py-1 bg-blue-600 text-white rounded">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    (function() {
+      let timer;
+      const popup = document.getElementById('discount-popup');
+      const closeBtn = document.getElementById('discount-close');
+      function showPopup() {
+        popup.classList.remove('hidden');
+      }
+      function resetTimer() {
+        popup.classList.add('hidden');
+        clearTimeout(timer);
+        timer = setTimeout(showPopup, 20000);
+      }
+      ['mousemove', 'keydown', 'click', 'touchstart'].forEach(evt => {
+        document.addEventListener(evt, resetTimer);
+      });
+      if (closeBtn) {
+        closeBtn.addEventListener('click', resetTimer);
+      }
+      resetTimer();
+    })();
+  </script>
 </body>
 </html>
