@@ -1,0 +1,392 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1001,
+    "fields": {
+      "name": "Mock Product 1",
+      "slug": "mock-product-1",
+      "sale_price": 1010,
+      "stock_price": 1110,
+      "stock": 2,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1002,
+    "fields": {
+      "name": "Mock Product 2",
+      "slug": "mock-product-2",
+      "sale_price": 1020,
+      "stock_price": 1120,
+      "stock": 3,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1003,
+    "fields": {
+      "name": "Mock Product 3",
+      "slug": "mock-product-3",
+      "sale_price": 1030,
+      "stock_price": 1130,
+      "stock": 4,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1004,
+    "fields": {
+      "name": "Mock Product 4",
+      "slug": "mock-product-4",
+      "sale_price": 1040,
+      "stock_price": 1140,
+      "stock": 5,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1005,
+    "fields": {
+      "name": "Mock Product 5",
+      "slug": "mock-product-5",
+      "sale_price": 1050,
+      "stock_price": 1150,
+      "stock": 1,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1006,
+    "fields": {
+      "name": "Mock Product 6",
+      "slug": "mock-product-6",
+      "sale_price": 1060,
+      "stock_price": 1160,
+      "stock": 2,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1007,
+    "fields": {
+      "name": "Mock Product 7",
+      "slug": "mock-product-7",
+      "sale_price": 1070,
+      "stock_price": 1170,
+      "stock": 3,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1008,
+    "fields": {
+      "name": "Mock Product 8",
+      "slug": "mock-product-8",
+      "sale_price": 1080,
+      "stock_price": 1180,
+      "stock": 4,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1009,
+    "fields": {
+      "name": "Mock Product 9",
+      "slug": "mock-product-9",
+      "sale_price": 1090,
+      "stock_price": 1190,
+      "stock": 5,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1010,
+    "fields": {
+      "name": "Mock Product 10",
+      "slug": "mock-product-10",
+      "sale_price": 1100,
+      "stock_price": 1200,
+      "stock": 1,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1011,
+    "fields": {
+      "name": "Mock Product 11",
+      "slug": "mock-product-11",
+      "sale_price": 1110,
+      "stock_price": 1210,
+      "stock": 2,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1012,
+    "fields": {
+      "name": "Mock Product 12",
+      "slug": "mock-product-12",
+      "sale_price": 1120,
+      "stock_price": 1220,
+      "stock": 3,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1013,
+    "fields": {
+      "name": "Mock Product 13",
+      "slug": "mock-product-13",
+      "sale_price": 1130,
+      "stock_price": 1230,
+      "stock": 4,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1014,
+    "fields": {
+      "name": "Mock Product 14",
+      "slug": "mock-product-14",
+      "sale_price": 1140,
+      "stock_price": 1240,
+      "stock": 5,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1015,
+    "fields": {
+      "name": "Mock Product 15",
+      "slug": "mock-product-15",
+      "sale_price": 1150,
+      "stock_price": 1250,
+      "stock": 1,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1016,
+    "fields": {
+      "name": "Mock Product 16",
+      "slug": "mock-product-16",
+      "sale_price": 1160,
+      "stock_price": 1260,
+      "stock": 2,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1017,
+    "fields": {
+      "name": "Mock Product 17",
+      "slug": "mock-product-17",
+      "sale_price": 1170,
+      "stock_price": 1270,
+      "stock": 3,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1018,
+    "fields": {
+      "name": "Mock Product 18",
+      "slug": "mock-product-18",
+      "sale_price": 1180,
+      "stock_price": 1280,
+      "stock": 4,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1019,
+    "fields": {
+      "name": "Mock Product 19",
+      "slug": "mock-product-19",
+      "sale_price": 1190,
+      "stock_price": 1290,
+      "stock": 5,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1020,
+    "fields": {
+      "name": "Mock Product 20",
+      "slug": "mock-product-20",
+      "sale_price": 1200,
+      "stock_price": 1300,
+      "stock": 1,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1021,
+    "fields": {
+      "name": "Mock Product 21",
+      "slug": "mock-product-21",
+      "sale_price": 1210,
+      "stock_price": 1310,
+      "stock": 2,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1022,
+    "fields": {
+      "name": "Mock Product 22",
+      "slug": "mock-product-22",
+      "sale_price": 1220,
+      "stock_price": 1320,
+      "stock": 3,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1023,
+    "fields": {
+      "name": "Mock Product 23",
+      "slug": "mock-product-23",
+      "sale_price": 1230,
+      "stock_price": 1330,
+      "stock": 4,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1024,
+    "fields": {
+      "name": "Mock Product 24",
+      "slug": "mock-product-24",
+      "sale_price": 1240,
+      "stock_price": 1340,
+      "stock": 5,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1025,
+    "fields": {
+      "name": "Mock Product 25",
+      "slug": "mock-product-25",
+      "sale_price": 1250,
+      "stock_price": 1350,
+      "stock": 1,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1026,
+    "fields": {
+      "name": "Mock Product 26",
+      "slug": "mock-product-26",
+      "sale_price": 1260,
+      "stock_price": 1360,
+      "stock": 2,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1027,
+    "fields": {
+      "name": "Mock Product 27",
+      "slug": "mock-product-27",
+      "sale_price": 1270,
+      "stock_price": 1370,
+      "stock": 3,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1028,
+    "fields": {
+      "name": "Mock Product 28",
+      "slug": "mock-product-28",
+      "sale_price": 1280,
+      "stock_price": 1380,
+      "stock": 4,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1029,
+    "fields": {
+      "name": "Mock Product 29",
+      "slug": "mock-product-29",
+      "sale_price": 1290,
+      "stock_price": 1390,
+      "stock": 5,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1030,
+    "fields": {
+      "name": "Mock Product 30",
+      "slug": "mock-product-30",
+      "sale_price": 1300,
+      "stock_price": 1400,
+      "stock": 1,
+      "created_at": "2025-08-01T10:00:00Z",
+      "updated_at": "2025-08-01T10:00:00Z"
+    }
+  }
+]

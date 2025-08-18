@@ -1,0 +1,30 @@
+{% load i18n static %}
+<nav class="bg-white border-b" data-site-nav>
+  <div class="container mx-auto flex items-center justify-between h-12 px-4">
+    <a href="/" class="font-bold">{% trans 'Home' %}</a>
+    <div class="hidden md:flex space-x-4">
+      <a href="/products/" class="hover:text-brand-600">{% trans 'Products' %}</a>
+    </div>
+    <div class="flex items-center space-x-3 ml-auto">
+      <div class="relative">
+        <input id="nav-search" type="search" placeholder="{% trans 'Search' %}" class="border rounded px-2 py-1" />
+        <ul id="nav-search-results" class="hidden absolute bg-white border mt-1 w-full"></ul>
+      </div>
+      <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}" />
+        <select name="language" onchange="this.form.submit()" class="border rounded px-2 py-1">
+          {% get_current_language as LANGUAGE_CODE %}
+          {% get_available_languages as LANGUAGES %}
+          {% for lang in LANGUAGES %}
+            <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>{{ lang.1 }}</option>
+          {% endfor %}
+        </select>
+      </form>
+      <button id="menuToggle" class="md:hidden">☰</button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="md:hidden hidden px-4 pb-2">
+    <a href="/products/" class="block py-1">{% trans 'Products' %}</a>
+  </div>
+</nav>

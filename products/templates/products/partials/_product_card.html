@@ -1,0 +1,21 @@
+{% load i18n currency %}
+<div class="p-card">
+  <div class="p-card__image">
+    <img src="{{ product.image_url|default:'https://via.placeholder.com/300x300?text=No+Image' }}" alt="{{ product.name }}" />
+  </div>
+  <div class="p-card__body">
+    <h3 class="p-card__name">{{ product.name }}</h3>
+    <div class="p-card__prices">
+      <span class="p-card__sale">{{ product.sale_price|currency }}</span>
+      {% if product.sale_price < product.stock_price %}
+        <span class="p-card__stock">{{ product.stock_price|currency }}</span>
+      {% endif %}
+    </div>
+    <span class="p-card__badge {% if product.stock > 0 %}p-card__badge--ok{% else %}p-card__badge--out{% endif %}">
+      {% if product.stock > 0 %}{% trans "In stock" %}{% else %}{% trans "Out of stock" %}{% endif %}
+    </span>
+    <div class="p-card__actions">
+      <a href="{% url 'products:product-detail' product.slug %}" class="p-card__link">{% trans "View details" %}</a>
+    </div>
+  </div>
+</div>

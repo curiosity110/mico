@@ -1,9 +1,53 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
+from django.db.models import Q
+from django.views.generic import ListView, DetailView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, ListAPIView
+from rest_framework.pagination import PageNumberPagination
 from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework import status
+
 from products.models import Product
 from products.serializers import ProductSerializer
+
+
+class ProductListView(ListView):
+    model = Product
+    template_name = "products/list.html"
+    paginate_by = 12
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        q = self.request.GET.get("q")
+        if q:
+            qs = qs.filter(name__icontains=q)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["query"] = self.request.GET.get("q", "")
+        return context
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = "products/detail.html"
+    slug_field = "slug"
+
+
+class ProductSearchApiView(ListAPIView):
+    serializer_class = ProductSerializer
+
+    class Pagination(PageNumberPagination):
+        page_size = 10
+
+    pagination_class = Pagination
+
+    def get_queryset(self):
+        qs = Product.objects.all()
+        q = self.request.query_params.get("q")
+        if q:
+            qs = qs.filter(Q(name__icontains=q))
+        return qs.order_by("name")
 
 
 class ProductListCreateView(ListCreateAPIView):
