@@ -1,9 +1,7 @@
 from django.contrib import admin
-
 from products.models import Product, ProductPage
 
 
-# Register your models here.
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     search_fields = ["name"]
@@ -11,7 +9,12 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 @admin.register(ProductPage)
-class ProdutPageAdmin(admin.ModelAdmin):
+class ProductPageAdmin(admin.ModelAdmin):  # <- fix typo ProdutPageAdmin -> ProductPageAdmin
     autocomplete_fields = ["product"]
-    list_display = ["product__name", "slug"]
+    list_display = ["product_name", "slug"]  # <- show product name via a method
     list_filter = ["product"]
+    list_select_related = ["product"]
+
+    def product_name(self, obj):
+        return obj.product.name
+    product_name.short_description = "Product"

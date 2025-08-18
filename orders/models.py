@@ -1,15 +1,13 @@
 from django.db import models
 from core.models import BaseInternalModel
+from django.conf import settings 
 
-
-# Create your models here.
 class Customer(BaseInternalModel):
     name = models.CharField(max_length=255)
     phone = models.CharField(max_length=255, unique=True)
 
     def save(self, *args, **kwargs):
         from core.utils import normalize_phone_number_if_possible
-
         self.phone = normalize_phone_number_if_possible(self.phone)
         super().save(*args, **kwargs)
 
@@ -35,28 +33,34 @@ class Order(BaseInternalModel):
 
     status = models.CharField(
         max_length=255,
-        choices=Status,
+        choices=Status.choices,           # <- fix
         default=Status.PENDING,
     )
     type = models.CharField(
         max_length=255,
-        choices=Type,
+        choices=Type.choices,             # <- fix
         default=Type.NORMAL,
     )
-    agent = models.ForeignKey(
-        "accounts.User", on_delete=models.CASCADE, null=True, blank=True
-    )
+
+    agent = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE, related_name="orders"
     )
     address = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=255, blank=True)
+
+    # ----- OrderImport relation (fix or temporarily disable) -----
+    # If you DO have an app & model named order_imports.OrderImport,
+    # ensure 'order_imports' is in INSTALLED_APPS and the model is defined as OrderImport.
+    # Otherwise, point to the correct app/model or comment out for now to unblock migrations.
     order_import = models.ForeignKey(
-        "order_imports.OrderImport",
+        "order_imports.OrderImport",      # <- change to "orders.OrderImport" if that's where it lives
         on_delete=models.SET_NULL,
         null=True,
+        blank=True,
         related_name="orders",
     )
+    # -------------------------------------------------------------
 
     def __str__(self):
         return f"{self.pk} - {self.status} - {self.customer}"
@@ -80,9 +84,7 @@ class CustomerComment(BaseInternalModel):
     )
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
     comment = models.TextField()
-    agent = models.ForeignKey(
-        "accounts.User", on_delete=models.CASCADE, null=True, blank=True
-    )
+    agent = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return f"{self.customer} - {self.comment}"
