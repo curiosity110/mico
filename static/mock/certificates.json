@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": {"en": "ISO 9001", "mk": "ISO 9001", "sq": "ISO 9001"},
+    "description": {
+      "en": "Quality Management — audited annually.",
+      "mk": "Менаџмент на квалитет — годишно ревидиран.",
+      "sq": "Menaxhim i cilësisë — i audituar çdo vit."
+    },
+    "image_url": "https://dummyimage.com/600x400/ffffff/000000.png&text=ISO+9001"
+  },
+  {
+    "id": 2,
+    "name": {"en": "ISO 22000 / HACCP", "mk": "ISO 22000 / HACCP", "sq": "ISO 22000 / HACCP"},
+    "description": {
+      "en": "Food Safety Management — full compliance.",
+      "mk": "Управување со безбедност на храна — целосна усогласеност.",
+      "sq": "Menaxhimi i sigurisë ushqimore — përputhje e plotë."
+    },
+    "image_url": "https://dummyimage.com/600x400/ffffff/000000.png&text=ISO+22000"
+  },
+  {
+    "id": 3,
+    "name": {"en": "GMP", "mk": "GMP", "sq": "GMP"},
+    "description": {
+      "en": "Good Manufacturing Practice — verified suppliers.",
+      "mk": "Добра производствена пракса — верифицирани добавувачи.",
+      "sq": "Praktikë e mirë prodhimi — furnizues të verifikuar."
+    },
+    "image_url": "https://dummyimage.com/600x400/ffffff/000000.png&text=GMP"
+  },
+  {
+    "id": 4,
+    "name": {"en": "CE", "mk": "CE", "sq": "CE"},
+    "description": {
+      "en": "Conformité Européenne — market compliant.",
+      "mk": "Conformité Européenne — усогласено со пазарот.",
+      "sq": "Conformité Européenne — në përputhje me tregun."
+    },
+    "image_url": "https://dummyimage.com/600x400/ffffff/000000.png&text=CE"
+  }
+]
