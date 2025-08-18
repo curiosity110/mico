@@ -10,10 +10,6 @@ def index(request):
     return render(request, 'index.html')
 
 
-<<<<<<< HEAD
-def products_page(request):
-    return render(request, 'all_products.html')
-=======
 
 class ProductPageFormView(FormView):
     form_class = OrderForm
@@ -52,4 +48,3 @@ class TestView(TemplateView):
 
 class ThankYouView(TemplateView):
     template_name = "thank_you.html"
->>>>>>> 90dfcbf (backend)

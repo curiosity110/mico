@@ -35,148 +35,21 @@
   <title>{% block title %}{% trans '{{BrandName}}' %}{% endblock %}</title>
 </head>
 <body class="min-h-screen bg-gray-50 text-gray-800 antialiased">
-<<<<<<< HEAD
-  <div class="flex justify-end gap-2 p-2 text-xl">
-    <a href="/mk/" aria-label="Macedonian">🇲🇰</a>
-    <a href="/en/" aria-label="English">🇬🇧</a>
-    <a href="/al/" aria-label="Albanian">🇦🇱</a>
-  </div>
-  {% block content %}{% endblock %}
-
-  <!-- Order Modal -->
-  <div id="order-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
-    <div class="bg-white p-6 rounded-xl w-full max-w-md">
-      <form id="order-form" class="space-y-4">
-        <input type="hidden" id="order-product-id" name="product_id">
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Name</label>
-          <input type="text" name="name" class="mt-1 w-full rounded-xl border-gray-300 p-3" required>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Phone</label>
-          <input type="tel" name="phone" class="mt-1 w-full rounded-xl border-gray-300 p-3" required>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Address</label>
-          <input type="text" name="address" class="mt-1 w-full rounded-xl border-gray-300 p-3" required>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700">City</label>
-          <input type="text" name="city" class="mt-1 w-full rounded-xl border-gray-300 p-3" required>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Quantity</label>
-          <input type="number" name="quantity" min="1" value="1" class="mt-1 w-full rounded-xl border-gray-300 p-3" required>
-        </div>
-        <div class="flex justify-end gap-2 pt-2">
-          <button type="button" id="order-cancel" class="px-4 py-2 rounded-xl border">Cancel</button>
-          <button type="submit" class="px-4 py-2 rounded-xl bg-blue-600 text-white">Submit</button>
-        </div>
-        <p id="order-message" class="text-sm"></p>
-      </form>
-    </div>
-  </div>
-
-  <div id="discount-popup" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50">
-    <div class="bg-white p-6 rounded-xl w-80">
-      <h2 class="text-lg font-semibold mb-2">Get 20% off</h2>
-      <p class="text-sm mb-4">Enter your name and phone number to receive a 20% discount.</p>
-      <form class="space-y-2">
-        <input type="text" placeholder="Name" class="w-full border rounded p-2" />
-        <input type="tel" placeholder="Phone number" class="w-full border rounded p-2" />
-        <div class="flex justify-end gap-2">
-          <button type="button" id="discount-close" class="px-3 py-1 border rounded">Close</button>
-          <button type="submit" class="px-3 py-1 bg-blue-600 text-white rounded">Submit</button>
-        </div>
-      </form>
-    </div>
-  </div>
-=======
   <!-- subtle background aura -->
   <div class="pointer-events-none fixed inset-0 bg-[radial-gradient(70rem_40rem_at_50%_-10%,theme(colors.brand.100/40),transparent)]"></div>
 
   {% block content %}{% endblock %}
->>>>>>> 90dfcbf (backend)
 
   <!-- Swiper JS (required) -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <!-- nav toggles + sticky glow -->
   <script>
-<<<<<<< HEAD
-    window.APP_CONFIG = Object.assign({API_BASE: '', USE_MOCK_ORDER: true}, window.APP_CONFIG || {});
-
-    function submitOrder(data) {
-      if (window.APP_CONFIG.USE_MOCK_ORDER) {
-        return new Promise((resolve) => setTimeout(() => resolve({ id: 123 }), 1000));
-      }
-      return fetch(`${window.APP_CONFIG.API_BASE}/public/orders/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).then((res) => {
-        if (!res.ok) throw new Error('Network');
-        return res.json();
-      });
-    }
-
-    function closeOrderModal() {
-      document.getElementById('order-modal').classList.add('hidden');
-    }
-
-    window.openOrderModal = function (productId) {
-      document.getElementById('order-product-id').value = productId;
-      document.getElementById('order-message').textContent = '';
-      document.getElementById('order-modal').classList.remove('hidden');
-    };
-
-    document.getElementById('order-cancel').addEventListener('click', closeOrderModal);
-    document.getElementById('order-modal').addEventListener('click', function (e) {
-      if (e.target === e.currentTarget) closeOrderModal();
-    });
-
-    document.getElementById('order-form').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = {
-        name: form.name.value,
-        phone: form.phone.value,
-        address: form.address.value,
-        city: form.city.value,
-        product_id: form.product_id.value,
-        quantity: form.quantity.value
-      };
-      const msg = document.getElementById('order-message');
-      msg.textContent = 'Submitting...';
-      try {
-        await submitOrder(data);
-        msg.textContent = 'Order placed successfully!';
-        form.reset();
-        setTimeout(closeOrderModal, 1500);
-      } catch (err) {
-        msg.textContent = 'Error placing order.';
-      }
-    });
-  </script>
-
-  <script>
-    (function() {
-      const popup = document.getElementById('discount-popup');
-      const closeBtn = document.getElementById('discount-close');
-      const sevenDays = 7 * 24 * 60 * 60 * 1000;
-
-      function showPopup() {
-        const dismissed = parseInt(localStorage.getItem('discountDismissed') || '0', 10);
-        if (!dismissed || Date.now() - dismissed > sevenDays) {
-          popup.classList.remove('hidden');
-        }
-=======
     document.addEventListener('click', (e) => {
       const toggle = e.target.closest('#menuToggle');
       if (toggle) {
         document.getElementById('mobileMenu')?.classList.toggle('hidden');
         document.getElementById('menuIcon')?.classList.toggle('is-open');
->>>>>>> 90dfcbf (backend)
       }
       if (e.target.closest('#mobileMenu a')) {
         document.getElementById('mobileMenu')?.classList.add('hidden');
@@ -197,9 +70,7 @@
     window.addEventListener('scroll', handleScroll);
   </script>
 
-<<<<<<< HEAD
-=======
-  <!-- hamburger animation -->
+  // <!-- hamburger animation -->
   <style>
     #menuIcon .line { transition: transform .2s ease, opacity .2s ease; transform-origin: center; }
     #menuIcon.is-open .line-1 { transform: translateY(6px) rotate(45deg); }
@@ -207,7 +78,6 @@
     #menuIcon.is-open .line-3 { transform: translateY(-6px) rotate(-45deg); }
   </style>
 
->>>>>>> 90dfcbf (backend)
   {% block scripts %}{% endblock %}
 </body>
 </html>
