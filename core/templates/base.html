@@ -10,10 +10,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
-  <title>{% block title %}{% trans '{{BrandName}}' %}{% endblock %}</title>
+  <title>{% block title %}{% trans 'BrandName' %}{% endblock %}</title>
 </head>
 <body class="min-h-screen bg-gray-50 text-gray-800 antialiased">
   {% block content %}{% endblock %}
+  
   <div id="discount-popup" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50">
     <div class="bg-white p-6 rounded-xl w-80">
       <h2 class="text-lg font-semibold mb-2">Get 20% off</h2>
@@ -28,26 +29,28 @@
       </form>
     </div>
   </div>
+
   <script>
     (function() {
-      let timer;
       const popup = document.getElementById('discount-popup');
       const closeBtn = document.getElementById('discount-close');
+      const sevenDays = 7 * 24 * 60 * 60 * 1000;
+
       function showPopup() {
-        popup.classList.remove('hidden');
+        const dismissed = parseInt(localStorage.getItem('discountDismissed') || '0', 10);
+        if (!dismissed || Date.now() - dismissed > sevenDays) {
+          popup.classList.remove('hidden');
+        }
       }
-      function resetTimer() {
-        popup.classList.add('hidden');
-        clearTimeout(timer);
-        timer = setTimeout(showPopup, 20000);
-      }
-      ['mousemove', 'keydown', 'click', 'touchstart'].forEach(evt => {
-        document.addEventListener(evt, resetTimer);
-      });
+
       if (closeBtn) {
-        closeBtn.addEventListener('click', resetTimer);
+        closeBtn.addEventListener('click', () => {
+          popup.classList.add('hidden');
+          localStorage.setItem('discountDismissed', Date.now());
+        });
       }
-      resetTimer();
+
+      setTimeout(showPopup, 30000); // Show after 30s
     })();
   </script>
 </body>

@@ -2,3 +2,90 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: mk\n"
+
+msgid "BrandName"
+msgstr "BrandName"
+
+msgid "Quality products, fast delivery."
+msgstr "Квалитетни производи, брза достава."
+
+msgid "Cash on delivery across the country. 7-day easy returns."
+msgstr "Плаќање при достава низ целата држава. Лесен поврат за 7 дена."
+
+msgid "Browse products"
+msgstr "Прелистај производи"
+
+msgid "Call us: +389 70 000 000"
+msgstr "Јавете се: +389 70 000 000"
+
+msgid "Cash on Delivery"
+msgstr "Плаќање при достава"
+
+msgid "Fast delivery (1–3 days)"
+msgstr "Брза достава (1–3 дена)"
+
+msgid "7-day return policy"
+msgstr "Политика на враќање за 7 дена"
+
+msgid "Verified supplier"
+msgstr "Проверен добавувач"
+
+msgid "Featured products"
+msgstr "Избрани производи"
+
+msgid "View all"
+msgstr "Види сите"
+
+msgid "All products"
+msgstr "Сите производи"
+
+msgid "Products"
+msgstr "Производи"
+
+msgid "Contact"
+msgstr "Контакт"
+
+msgid "Name"
+msgstr "Име"
+
+msgid "Email"
+msgstr "Е-пошта"
+
+msgid "Message"
+msgstr "Порака"
+
+msgid "Send"
+msgstr "Испрати"
+
+msgid "We deliver what you need, when you need it."
+msgstr "Испорачуваме што ви треба, кога ви треба."
+
+msgid "Example Street"
+msgstr "Пример улица"
+
+msgid "Useful links"
+msgstr "Корисни врски"
+
+msgid "Privacy Policy"
+msgstr "Политика за приватност"
+
+msgid "Terms & Conditions"
+msgstr "Услови и одредби"
+
+msgid "All rights reserved"
+msgstr "Сите права задржани"
+
+msgid "COD available"
+msgstr "Плаќање при достава"
+
+msgid "Ships in 24h"
+msgstr "Испорака за 24ч"
+
+msgid "In stock"
+msgstr "На залиха"
+
+msgid "Out of stock"
+msgstr "Нема залиха"
+
+msgid "View details"
+msgstr "Детали"

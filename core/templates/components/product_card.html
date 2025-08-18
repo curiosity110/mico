@@ -1,23 +1,36 @@
-{# product_card partial: expects label, desc, img #}
+{# product card: expects label, img, price, old_price, in_stock #}
 {% load i18n %}
-{% trans "ExampleProduct" as default_label %}
-{% trans "Short placeholder description" as default_desc %}
-<a href="#order" class="group block rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden hover:shadow-md hover:border-blue-200 transition">
+{% with default_price="9.99" %}
+<a href="#" class="block rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
   <div class="aspect-square overflow-hidden bg-gray-100">
-    <img src="{{ img|default:'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg' }}" alt="" class="h-full w-full object-cover group-hover:scale-105 transition">
+    <img src="{{ img|default:'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg' }}" alt="" class="h-full w-full object-cover" />
   </div>
   <div class="p-4">
-    <h3 class="text-base font-semibold line-clamp-2">{{ label|default:default_label }}</h3>
-    <p class="mt-1 text-sm text-gray-500">{{ desc|default:default_desc }}</p>
-    {% with default_price="9.99" default_discount="20" %}
-    <div class="mt-2">
-      <span class="text-lg font-bold">${{ price|default:default_price }}</span>
-      <span class="ml-2 text-sm text-green-600">{{ discount|default:default_discount }}% off</span>
+    <h3 class="text-base font-semibold text-gray-900 line-clamp-2">
+      {{ label|default:"Example product" }}
+    </h3>
+    <ul class="mt-2 text-sm text-gray-600 space-y-1">
+      <li>• {% trans 'COD available' %}</li>
+      <li>• {% trans 'Ships in 24h' %}</li>
+    </ul>
+    <div class="mt-2 flex items-center gap-2">
+      <span class="text-lg font-bold text-gray-900">${{ price|default:default_price }}</span>
+      {% if old_price %}
+        <span class="text-sm text-gray-500 line-through">${{ old_price }}</span>
+      {% endif %}
     </div>
-    {% endwith %}
-    <div class="mt-4 flex gap-2">
-      <a href="#order" class="inline-flex items-center rounded-xl bg-blue-600 text-white px-4 py-2 text-sm font-semibold hover:bg-blue-700">{% trans '{{Order}}' %}</a>
-      <a href="#products" class="inline-flex items-center rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm font-semibold hover:bg-gray-50">{% trans '{{More Info}}' %}</a>
+    <span class="mt-2 inline-block rounded-lg px-2 py-1 text-xs font-medium {% if in_stock|default:True %}bg-green-100 text-green-800{% else %}bg-gray-100 text-gray-500{% endif %}">
+      {% if in_stock|default:True %}
+        {% trans 'In stock' %}
+      {% else %}
+        {% trans 'Out of stock' %}
+      {% endif %}
+    </span>
+    <div class="mt-4">
+      <a href="#" class="inline-flex items-center rounded-xl bg-blue-600 text-white px-4 py-2 text-sm font-semibold hover:bg-blue-700">
+        {% trans 'View details' %}
+      </a>
     </div>
   </div>
 </a>
+{% endwith %}

@@ -2,3 +2,90 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: en\n"
+
+msgid "BrandName"
+msgstr "BrandName"
+
+msgid "Quality products, fast delivery."
+msgstr "Quality products, fast delivery."
+
+msgid "Cash on delivery across the country. 7-day easy returns."
+msgstr "Cash on delivery across the country. 7-day easy returns."
+
+msgid "Browse products"
+msgstr "Browse products"
+
+msgid "Call us: +389 70 000 000"
+msgstr "Call us: +389 70 000 000"
+
+msgid "Cash on Delivery"
+msgstr "Cash on Delivery"
+
+msgid "Fast delivery (1–3 days)"
+msgstr "Fast delivery (1–3 days)"
+
+msgid "7-day return policy"
+msgstr "7-day return policy"
+
+msgid "Verified supplier"
+msgstr "Verified supplier"
+
+msgid "Featured products"
+msgstr "Featured products"
+
+msgid "View all"
+msgstr "View all"
+
+msgid "All products"
+msgstr "All products"
+
+msgid "Products"
+msgstr "Products"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "We deliver what you need, when you need it."
+msgstr "We deliver what you need, when you need it."
+
+msgid "Example Street"
+msgstr "Example Street"
+
+msgid "Useful links"
+msgstr "Useful links"
+
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+msgid "Terms & Conditions"
+msgstr "Terms & Conditions"
+
+msgid "All rights reserved"
+msgstr "All rights reserved"
+
+msgid "COD available"
+msgstr "COD available"
+
+msgid "Ships in 24h"
+msgstr "Ships in 24h"
+
+msgid "In stock"
+msgstr "In stock"
+
+msgid "Out of stock"
+msgstr "Out of stock"
+
+msgid "View details"
+msgstr "View details"
